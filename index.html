@@ -175,26 +175,70 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
 @media (max-width:860px){.arena{grid-template-columns:1fr 1fr}.arena .board{grid-column:1/-1;grid-row:2}.score.sa{grid-column:1}.score.sb{grid-column:2}.score{padding:10px 6px}}
 @media (prefers-reduced-motion:reduce){.score.bump .snum{animation:none}}
 
+/* --- Jeu des 7 différences --- */
+.sd{position:fixed;inset:0;z-index:72;overflow:auto;color:#fff;display:flex;flex-direction:column;align-items:center;gap:10px;
+  background:radial-gradient(ellipse at 50% 0%,#3a2a5c,#140d26 60%,#0a0716);
+  padding:calc(12px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.sd .ftop{color:#cfc3ea;max-width:1400px}
+.sdhead{width:100%;max-width:1400px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.sdstats{display:flex;gap:16px;align-items:baseline}
+.sdcount{font-family:var(--f-punch);font-size:clamp(1.8rem,5vw,3rem);color:var(--gold)}
+.sdtime{font-family:var(--f-mono);font-size:1.2rem;color:#cfc3ea;font-variant-numeric:tabular-nums}
+.sdhelp{margin:0;color:#cfc3ea;width:100%;max-width:1400px}
+.sdpics{width:100%;max-width:1400px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sdpics figure{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+.sdpics figcaption{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:#cfc3ea;text-align:center}
+.sdimg{position:relative;cursor:crosshair;border-radius:8px;overflow:hidden;box-shadow:0 10px 30px #0008;line-height:0}
+.sdimg img{width:100%;height:auto;display:block;user-select:none;-webkit-user-drag:none}
+.sdmark{position:absolute;transform:translate(-50%,-50%);border-radius:50%;border:4px solid #2bf08a;box-shadow:0 0 0 3px #0008,0 0 18px #2bf08a;pointer-events:none;animation:sdpop .45s cubic-bezier(.2,1.6,.4,1)}
+.sdmark.rev{border-color:var(--gold);box-shadow:0 0 0 3px #0008,0 0 18px var(--gold)}
+@keyframes sdpop{from{transform:translate(-50%,-50%) scale(.2);opacity:0}}
+.sdmiss{position:absolute;transform:translate(-50%,-50%);font-weight:700;font-size:1.6rem;color:#ff5a6e;text-shadow:0 0 6px #000;pointer-events:none;animation:sdmiss .7s ease-out forwards}
+@keyframes sdmiss{to{opacity:0;transform:translate(-50%,-90%)}}
+.sdmsg{font-family:var(--f-display);font-size:clamp(1.2rem,3.5vw,1.8rem);min-height:1.4em;text-align:center;color:var(--gold)}
+@media (max-width:700px){.sdpics{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.sdmark,.sdmiss{animation:none}}
 /* --- Blind test : piste d'athlétisme --- */
 .bt{position:fixed;inset:0;z-index:72;overflow:auto;color:#fff;display:flex;flex-direction:column;align-items:center;gap:12px;
   background:radial-gradient(ellipse at 50% 0%,#24305a,#0d1226 60%,#070a16);
   padding:calc(12px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 .bt .ftop{color:#b9c3e6}
 .btwrap{width:100%;max-width:1000px;display:flex;flex-direction:column;gap:16px}
-.btrack{position:relative;border-radius:22px;padding:10px 64px 10px 46px;background:linear-gradient(180deg,#c9573c,#a9412b);box-shadow:inset 0 0 0 4px #ffffff26,0 14px 30px #0008}
-.btrack::before{content:"";position:absolute;left:46px;top:10px;bottom:10px;width:4px;background:#fff}
-.btrack .finish{position:absolute;right:46px;top:10px;bottom:10px;width:14px;background:repeating-conic-gradient(#fff 0 25%,#111 0 50%) 0 0/14px 14px}
-.lane{position:relative;height:clamp(60px,9vw,84px);border-bottom:3px dashed #ffffffb3}
+.btrack{position:relative;border-radius:22px;padding:10px 70px 10px 140px;background:linear-gradient(180deg,#c9573c,#a9412b);box-shadow:inset 0 0 0 4px #ffffff26,0 14px 30px #0008}
+.btrack::before{content:"";position:absolute;left:140px;top:10px;bottom:10px;width:4px;background:#fff}
+.btrack .finish{position:absolute;right:52px;top:10px;bottom:10px;width:14px;background:repeating-conic-gradient(#fff 0 25%,#111 0 50%) 0 0/14px 14px}
+.lane{position:relative;height:clamp(96px,13vw,128px);border-bottom:3px solid #ffffffd9}
 .lane:last-of-type{border-bottom:0}
-.lnum{position:absolute;left:-36px;top:50%;transform:translateY(-50%);font-family:var(--f-punch);font-size:1.6rem;color:#fff}
+.lnum{position:absolute;left:-134px;top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;white-space:nowrap;font-family:var(--f-punch);font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:#fff;opacity:.9}
 .lane[data-t="0"] .lnum{color:#ffd0d7}.lane[data-t="1"] .lnum{color:#cfe4ff}
-.runner{position:absolute;top:50%;left:calc(var(--p,0) * 100%);transform:translate(-30%,-50%);transition:left 1.8s cubic-bezier(.3,.8,.3,1);display:flex;align-items:center;gap:6px;z-index:2}
-.runner .rf{display:flex}
-.runner .face{width:clamp(30px,4.6vw,44px);height:clamp(30px,4.6vw,44px);margin-left:-12px;border-width:3px}
-.runner .rf .face:first-child{margin-left:0}
-.lane[data-t="0"] .runner .face{border-color:#ff6077}.lane[data-t="1"] .runner .face{border-color:#63adff}
-.rpts{font-family:var(--f-punch);font-size:clamp(1.1rem,2.6vw,1.6rem);background:#fff;color:var(--ink);border-radius:999px;padding:2px 10px;line-height:1.2;box-shadow:0 3px 8px #0006}
+/* le peloton : 3 petits athlètes avec la tête des joueurs */
+.runner{position:absolute;bottom:4px;left:calc(var(--p,0) * 100%);transform:translateX(-100%);transition:left 2.2s cubic-bezier(.35,.1,.25,1);display:flex;align-items:flex-end;gap:4px;z-index:2;--u:clamp(30px,4.2vw,42px)}
+.pack{position:relative;display:flex;align-items:flex-end}
+.ath{position:relative;width:calc(var(--u) * 1.15);height:calc(var(--u) * 2.15);margin-left:calc(var(--u) * -.35)}
+.ath:first-child{margin-left:0}
+.ath:nth-child(2){transform:translateY(calc(var(--u) * -.18))}
+.ath:nth-child(1) .body{animation-delay:-.12s}.ath:nth-child(3) .body{animation-delay:-.24s}
+.ath .head{position:absolute;left:50%;top:0;transform:translateX(-50%);width:var(--u);height:var(--u);border-radius:50%;object-fit:cover;border:3px solid var(--tc);box-shadow:0 2px 6px #0007;z-index:2;background:#f6cfa8}
+.ath .body{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:calc(var(--u) * 1.1);height:calc(var(--u) * 1.35);overflow:visible}
+.ath .ini{display:grid;place-items:center;font-family:var(--f-punch);font-size:calc(var(--u) * .45);color:var(--ink)}
+.lane[data-t="0"] .runner{--tc:#ff6077;--jersey:#d63a52}.lane[data-t="1"] .runner{--tc:#63adff;--jersey:#2f7fd1}
+.body .leg,.body .arm{transform-box:fill-box;transform-origin:50% 0}
+.body .leg.l{transform:rotate(8deg)}.body .leg.r{transform:rotate(-8deg)}
+.body .arm.l{transform:rotate(14deg)}.body .arm.r{transform:rotate(-14deg)}
+.runner.running .leg.l,.runner.running .arm.r{animation:stride .32s ease-in-out infinite alternate}
+.runner.running .leg.r,.runner.running .arm.l{animation:stride .32s ease-in-out infinite alternate-reverse}
+.runner.running .ath{animation:hop .32s ease-in-out infinite alternate}
+.runner.running .ath:nth-child(2){animation-name:hop2}
+@keyframes stride{from{transform:rotate(38deg)}to{transform:rotate(-38deg)}}
+@keyframes hop{to{translate:0 -4px}}
+@keyframes hop2{to{translate:0 -4px}}
+.runner.idle .ath{animation:breathe 2.4s ease-in-out infinite}
+@keyframes breathe{50%{translate:0 -1.5px}}
+.rpts{position:absolute;left:calc(100% + 8px);top:50%;transform:translateY(-50%);font-family:var(--f-punch);font-size:clamp(1.1rem,2.6vw,1.6rem);background:#fff;color:var(--ink);border-radius:999px;padding:2px 10px;line-height:1.2;box-shadow:0 3px 8px #0006;white-space:nowrap}
 .runner.leader .rpts{background:var(--gold)}
+.runner.leader .pack::before{content:"👑";position:absolute;right:calc(var(--u) * .3);top:calc(var(--u) * -.55);font-size:calc(var(--u) * .5);z-index:3}
+@media (max-width:640px){.btrack{padding:8px 70px 8px 96px}.btrack::before{left:96px}.btrack .finish{right:30px}.lnum{left:-92px;font-size:.8rem}.runner{--u:26px}}
+@media (prefers-reduced-motion:reduce){.runner{transition:none}.runner.running .leg,.runner.running .arm,.runner.running .ath,.runner.idle .ath{animation:none}}
 .btintro,.btplay{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
 .btqrs{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
 .btqr{background:#ffffff10;border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px;border-top:4px solid var(--tc)}
@@ -231,8 +275,8 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
 .btcell .btline{padding:0}
 .btnote{font-size:.8rem;color:#b9c3e6;margin:6px 0 0}
 .btend{display:flex;flex-direction:column;align-items:center;gap:8px}
-@media (max-width:640px){.btteams,.btlocal{grid-template-columns:1fr}.btrow{grid-template-columns:2em minmax(0,1fr)}.btrow .btcell{grid-column:2}.btrack{padding:8px 40px 8px 34px}.btrack::before{left:34px}.btrack .finish{right:26px}.lnum{left:-28px}}
-@media (prefers-reduced-motion:reduce){.runner{transition:none}}
+@media (max-width:640px){.btteams,.btlocal{grid-template-columns:1fr}.btrow{grid-template-columns:2em minmax(0,1fr)}.btrow .btcell{grid-column:2}}
+
 /* téléphone des équipes */
 .bpfaces{display:flex;gap:6px}.bpfaces .face{width:3em;height:3em}
 .bpstate{font-size:1.1rem;padding:14px;border-radius:10px;background:#ffffff10;text-align:center}
@@ -493,12 +537,26 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
     <div class="bpsave" id="bpSave"></div>
   </div>
 </main>
+<div class="sd" id="sd" hidden role="dialog" aria-modal="true" aria-label="Jeu des 7 différences">
+  <div class="ftop"><span>Jeu des 7 différences</span><button class="zclose" id="sdClose" type="button">Fermer</button></div>
+  <div class="sdhead">
+    <h2 class="jdt">Les <em>7 différences</em></h2>
+    <div class="sdstats"><span class="sdcount" id="sdCount">0 / 7</span><span class="sdtime" id="sdTime">0:00</span></div>
+  </div>
+  <p class="sdhelp">Cliquez sur une différence, sur l'une ou l'autre photo.</p>
+  <div class="sdpics">
+    <figure><div class="sdimg" data-k="0"><img src="diff-orig.jpg" alt="Photo originale"></div><figcaption>L'originale</figcaption></figure>
+    <figure><div class="sdimg" data-k="1"><img src="diff-modif.jpg" alt="Photo modifiée"></div><figcaption>Le faux</figcaption></figure>
+  </div>
+  <div class="sdmsg" id="sdMsg" aria-live="polite"></div>
+  <div class="eact2"><button class="btn" id="sdReveal" type="button">Révéler les différences</button><button class="btn" id="sdReset" type="button">Recommencer</button></div>
+</div>
 <div class="bt" id="bt" hidden role="dialog" aria-modal="true" aria-label="Blind test">
   <div class="ftop"><span>Blind test · 2000-2026</span><button class="zclose" id="btClose" type="button">Fermer</button></div>
   <div class="btwrap">
     <div class="btrack" id="btTrack" aria-label="Piste du blind test">
-      <div class="lane" data-t="0"><span class="lnum">A</span><div class="runner" id="btR0"></div></div>
-      <div class="lane" data-t="1"><span class="lnum">B</span><div class="runner" id="btR1"></div></div>
+      <div class="lane" data-t="0"><span class="lnum">Équipe A</span><div class="runner" id="btR0"></div></div>
+      <div class="lane" data-t="1"><span class="lnum">Équipe B</span><div class="runner" id="btR1"></div></div>
       <div class="finish" aria-hidden="true"></div>
     </div>
     <section class="btintro" id="btIntro">
@@ -617,27 +675,27 @@ const ITEMS = [
  ["📱","Le grand vote des costumes","Scannez le QR code avec votre téléphone pour voter : qui a le plus beau costume ?"],
  ["👥","Les équipes de la soirée","Équipe A : Guigui, Charlotte et Diane. Équipe B : Élodie, Arthur et Pauline."],
  ["🎧","C'est l'heure du blind test !","Il est 20h30 : sortez vos téléphones, 21 extraits à reconnaître !"],
- ["🦔","Un hérisson endormi","Il hiberne ici depuis le 1er novembre. Referme doucement."],
+ ["🍸","On ne vous dérange pas plus…","Mais n'oubliez pas de prendre l'apéro…"],
  ["💃","C'est l'heure du Just Dance !","Il est 21h30 : chaque équipe choisit un lutin et danse sur la chanson cachée dans son cadeau !"],
  ["🍽️","À table !","Il est 22h : tout le monde passe à table. Bon appétit !"],
  ["🎤","C'est l'heure du karaoké !","Il est 22h30 : chaque équipe choisit deux lutins et chante les chansons cachées dans leurs cadeaux !"],
  ["🥩","On passe à la viande !","Il est 23h : place au plat de résistance. Bon appétit !"],
  ["🦉","Une chouette hulotte","Elle surveille les fenêtres pas encore ouvertes."],
  ["🎁","C'est l'heure des cadeaux !","Il est minuit : tout le monde au pied du sapin, c'est l'heure d'ouvrir les cadeaux !!"],
- ["🎻","Un violon de poche","Il ne joue qu'un seul air, et toujours faux."],
+ ["🎧","Les filles aux platines !","Il est minuit et demi : les filles prennent le contrôle de la musique. Laissez sortir la DJ qui sommeille en vous !!"],
  ["🍊","Une clémentine","La tradition dans les souliers. Elle sent toute la pièce."],
  ["🕰️","Une horloge qui retarde","Exactement de 30 minutes. Ça explique beaucoup de choses."],
  ["🌙","C'est la fin de la soirée… ou pas !","On se sert un verre, les Pères Noël vous laissent tranquilles. Bonne nuit, ou bonne fin de soirée… On se retrouve demain pour de nouvelles aventures !!!"],
- ["🐿️","Un écureuil voleur","Il a pris la noisette qui était là. Il s'excuse."],
- ["❄️","Un flocon unique","Vraiment unique : il n'y en a pas deux pareils."],
- ["🎈","Un ballon rouge","Il tire vers le haut. Tiens-le bien."],
- ["🧭","Une boussole","Elle indique toujours la cuisine. Bizarre."],
- ["🍫","Un carré de chocolat noir","Le classique du calendrier, enfin."],
+ ["🥐","Viennoiseries et café !","Rien de mieux que des viennoiseries et un bon café pour commencer la journée !"],
+ ["🩱","Matinée détente !","Sortez les maillots et les serviettes : départ des traîneaux à 10h15…"],
+ ["🥂","Un petit blanc ?","Si tu es prêt, pourquoi ne pas prendre un petit blanc… histoire d'attendre les derniers 😉"],
+ ["🍻","APÉRO !!!","Alors ce spa ? Bien ? Après ce petit moment détente bien mérité, il est temps de reprendre les choses sérieuses : APÉRO !!!"],
+ ["🔍","Le jeu des 7 différences","Ouvrez l'œil : 7 différences se cachent dans cette photo des Jeux de Paris !"],
  ["🪶","Une plume de renne","Personne ne savait que les rennes avaient des plumes."],
  ["🔭","Une longue-vue","Avec elle, on voit la fenêtre n°24 d'ici. Non, ne triche pas."],
- ["🧸","Un ourson en peluche","Il lui manque un œil, il a vécu beaucoup de Noëls."],
- ["✉️","Une lettre au Père Noël","Écrite en 1987. Il n'est jamais trop tard pour la poster."],
- ["⭐","L'étoile du sapin","La dernière. Le calendrier est complet. Joyeux Noël !"]
+ ["🍫","Sois gourmand !","La gourmandise n'est pas toujours un vilain défaut… Que serait Noël sans chocolats ? Ou sans bière ? À toi de choisir, mais… sois gourmand !"],
+ ["🎭","Show must go on !!","Les enfants nous ont rejoints, bienvenue à eux ! Qu'ils se préparent et se déguisent : c'est à eux de prévoir le spectacle à venir !!"],
+ ["⭐","Joyeux Noël à tous !","Et si on se donnait rendez-vous dans un an ?"]
 ];
 // Le sapin : étoile (24) au sommet, 5 étages de boules, 3 cadeaux au pied. Numéros mélangés.
 const ROWS = [["star",[24]],["t1",[7,18]],["t2",[2,11,5]],["t3",[14,21,1,9]],["t4",[16,4,20,12,3]],["t5",[17,8,13,22,6,19]],["gifts",[10,15,23]]];
@@ -652,11 +710,13 @@ const start = Date.parse("2026-12-04T19:30:00+01:00");
 let opened = new Set(); try{opened = new Set(JSON.parse(store.get("avent30-open")||"[]"))}catch(e){}
 const saveOpened=()=>store.set("avent30-open",JSON.stringify([...opened].filter(n=>realUnlock(n)<=Date.now())));
 
-// Soirée : fenêtres 1 à 14 de 19h30 à 2h00. Pause nuit. Matinée : fenêtres 15 à 24 dès 9h00 le samedi.
+// Soirée : fenêtres 1 à 14 de 19h30 à 2h00. Pause nuit. Samedi : fenêtres 15 à 17 de 9h00 à 10h00, pause, puis 18 à 22 de 14h00 à 16h00, pause, puis 23 et 24 à 20h30 et 21h00.
 const MORNING = Date.parse("2026-12-05T09:00:00+01:00");
-const NIGHT_LAST = 14;
+const AFTERNOON = Date.parse("2026-12-05T14:00:00+01:00");
+const EVENING = Date.parse("2026-12-05T20:30:00+01:00");
+const NIGHT_LAST = 14, MORNING_LAST = 17, AFTERNOON_LAST = 22;
 let testOne = false; // mode essai : toutes les fenêtres deviennent disponibles (rien n'est enregistré)
-const realUnlock = n => n <= NIGHT_LAST ? start + (n-1)*STEP : MORNING + (n-NIGHT_LAST-1)*STEP;
+const realUnlock = n => n <= NIGHT_LAST ? start + (n-1)*STEP : n <= MORNING_LAST ? MORNING + (n-NIGHT_LAST-1)*STEP : n <= AFTERNOON_LAST ? AFTERNOON + (n-MORNING_LAST-1)*STEP : EVENING + (n-AFTERNOON_LAST-1)*STEP;
 const unlockAt = n => testOne ? 0 : realUnlock(n);
 const fmtClock = t => new Date(t).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"});
 const fmtLeft = ms => {const s=Math.max(0,Math.ceil(ms/1000));const j=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),x=s%60;
@@ -715,12 +775,22 @@ const BIG = {
   2:{ fight:true, title:"Les équipes de la soirée", text:"Elles s'affrontent toute la soirée. Que la meilleure gagne !", teams:TEAMS },
   1:{ qr:null, title:"Qui a le plus beau costume ?", text:"Scannez-moi avec votre téléphone pour voter." },
   3:{ bt:true, emoji:"🎧", title:"Blind test" },
+  4:{ emoji:"🍸", title:"On ne vous dérange pas plus…", text:"Mais n'oubliez pas de prendre l'apéro…" },
   5:{ jd:true, emoji:"💃", title:"C'est l'heure du Just Dance !", text:"Formez vos équipes, la compétition commence !",
       links:[], teams:TEAMS }, // liens de jeu à ajouter : {label:"…", url:"https://…"}
   6:{ emoji:"🍽️", title:"À table !", text:"Il est 22h, c'est l'heure de passer à table. Bon appétit !" },
   7:{ jd:"karaoke", emoji:"🎤", title:"Karaoké" },
   8:{ emoji:"🥩", title:"On passe à la viande !", text:"Il est 23h, place au plat de résistance. Bon appétit !" },
+  11:{ emoji:"💃", title:"Les filles aux platines !", text:"Les filles prennent le contrôle de la musique : laissez sortir la DJ qui sommeille en vous !!" },
   14:{ emoji:"🥂", title:"C'est la fin de la soirée… ou pas !", text:"On se sert un verre, les Pères Noël vous laissent tranquilles. Bonne nuit, ou bonne fin de soirée… On se retrouve demain pour de nouvelles aventures !!!" },
+  18:{ emoji:"🍻", title:"Alors ce spa ? Bien ?", text:"Après ce petit moment détente bien mérité, il est temps de reprendre les choses sérieuses : APÉRO !!!" },
+  19:{ diff:true, emoji:"🔍", title:"7 différences" },
+  22:{ emoji:"🍫", title:"Sois gourmand !", text:"La gourmandise n'est pas toujours un vilain défaut… Que serait Noël sans chocolats ? Ou sans bière ? À toi de choisir, mais… sois gourmand !" },
+  23:{ emoji:"🎭", title:"Bienvenue aux enfants !", text:"Ils nous ont rejoints : qu'ils se préparent et se déguisent, c'est à eux de prévoir le spectacle à venir !! Show must go on !!" },
+  24:{ emoji:"🎄", title:"Joyeux Noël à tous !", text:"Et si on se donnait rendez-vous dans un an ?" },
+  16:{ emoji:"🛷", title:"Préparez-vous pour une matinée détente !", text:"Sortez les maillots et les serviettes : départ des traîneaux à 10h15…" },
+  17:{ emoji:"🥂", title:"Tu es prêt ?", text:"Pourquoi ne pas prendre un petit blanc… histoire d'attendre les derniers 😉" },
+  15:{ emoji:"🥐", title:"Bonjour tout le monde !", text:"Rien de mieux que des viennoiseries et un bon café pour commencer la journée !" },
   10:{ emoji:"🎁", title:"Il est minuit !", text:"C'est l'heure d'ouvrir les cadeaux !!" }
 };
 // Lien du sondage (Microsoft Forms, Google Forms…) : le QR code est fabriqué à partir de ce lien
@@ -739,6 +809,7 @@ function openZoom(n){
   const b=BIG[n], cell=doors[n].cell;
   if(b.fight){ openFight(); return; }
   if(b.bt){ openBT(); return; }
+  if(b.diff){ openSD(); return; }
   if(b.jd){ openJD(b.jd===true?"jd":b.jd); return; }
   zball.className="zball "+([...cell.classList].find(c=>c.startsWith("c-"))||"c-gold");
   zT.textContent=b.title; zP.textContent=b.text;
@@ -1006,6 +1077,43 @@ jdRefQr.addEventListener("click",()=>{
   jdQr.hidden=false;
 });
 
+// ===== Jeu des 7 différences (coordonnées dans la photo de 1125 x 844) =====
+const SD={w:1125,h:844,diffs:[
+  {x:842,y:670,r:28,name:"Le « R » du tee-shirt noir est devenu un « P »"},
+  {x:710,y:630,r:24,name:"Le petit vélo du tee-shirt a disparu"},
+  {x:498,y:427,r:26,name:"Le logo de la casquette a disparu"},
+  {x:601,y:611,r:26,name:"Le mot « JEUX » a disparu du drapeau"},
+  {x:882,y:510,r:26,name:"Un plot orange a disparu sur la piste"},
+  {x:16,y:607,r:30,name:"Les anneaux olympiques ont disparu du panneau"},
+  {x:500,y:273,r:40,name:"L'image de l'écran géant est inversée"}
+]};
+let sdFound=new Set(), sdT0=0, sdTimer=0, sdDone=false;
+const sd=document.getElementById("sd");
+const fmtT=ms=>{const s=Math.floor(ms/1000);return Math.floor(s/60)+":"+String(s%60).padStart(2,"0");};
+function sdMark(i,cls){document.querySelectorAll(".sdimg").forEach(box=>{const d=SD.diffs[i],m=document.createElement("div");m.className="sdmark"+(cls?" "+cls:"");
+  m.style.left=d.x/SD.w*100+"%";m.style.top=d.y/SD.h*100+"%";m.style.width=(Math.max(d.r,30)*2.2)/SD.w*100+"%";m.style.height="auto";m.style.aspectRatio="1";box.appendChild(m);});}
+function sdUpdate(){sdCount.textContent=sdFound.size+" / "+SD.diffs.length;}
+function openSD(){sd.hidden=false;sd.scrollTop=0;if(!sdT0){sdT0=Date.now();}clearInterval(sdTimer);
+  if(!sdDone) sdTimer=setInterval(()=>{sdTime.textContent=fmtT(Date.now()-sdT0);},500); sdUpdate();}
+function closeSD(){clearInterval(sdTimer);sd.hidden=true;}
+function sdReset(){sdFound=new Set();sdDone=false;sdT0=Date.now();document.querySelectorAll(".sdmark").forEach(m=>m.remove());sdMsg.textContent="";sdTime.textContent="0:00";sdUpdate();openSD();}
+sd.addEventListener("click",e=>{
+  const box=e.target.closest(".sdimg"); if(!box||sdDone) return;
+  const r=box.getBoundingClientRect(), x=(e.clientX-r.left)/r.width*SD.w, y=(e.clientY-r.top)/r.height*SD.h;
+  // la plus petite zone touchée gagne (le texte avant le tee-shirt)
+  const hits=SD.diffs.map((d,i)=>({i,d,dist:Math.hypot(x-d.x,y-d.y)})).filter(o=>o.dist<=o.d.r).sort((a,b)=>a.d.r-b.d.r);
+  const hit=hits.find(o=>!sdFound.has(o.i));
+  if(hit){ sdFound.add(hit.i); sdMark(hit.i); sdMsg.textContent="✔ "+hit.d.name; try{fBell(1);}catch(_){}
+    sdUpdate();
+    if(sdFound.size===SD.diffs.length){sdDone=true;clearInterval(sdTimer);const t=fmtT(Date.now()-sdT0);sdTime.textContent=t;
+      sdMsg.textContent="🎉 Bravo ! Les 7 différences trouvées en "+t+" !";try{drumCrash();}catch(_){}}
+  } else if(!hits.length){ const m=document.createElement("div");m.className="sdmiss";m.textContent="✖";m.style.left=(x/SD.w*100)+"%";m.style.top=(y/SD.h*100)+"%";box.appendChild(m);setTimeout(()=>m.remove(),700); }
+});
+sdReveal.addEventListener("click",()=>{SD.diffs.forEach((d,i)=>{if(!sdFound.has(i)){sdFound.add(i);sdMark(i,"rev");}});sdDone=true;clearInterval(sdTimer);sdUpdate();
+  sdMsg.textContent="Les différences en doré n'avaient pas été trouvées.";});
+document.getElementById("sdReset").addEventListener("click",sdReset);
+sdClose.addEventListener("click",closeSD);
+
 // ===== Blind test : extraits joués sur le calendrier, réponses sur les téléphones des équipes =====
 // s / e = début et fin de l'extrait dans blindtest.mp3 (en secondes) ; aliases = autres façons acceptées d'écrire
 const BT={audio:"blindtest.mp3",grace:5,tracks:[
@@ -1065,12 +1173,30 @@ const btSave=()=>store.set("avent30-bt",JSON.stringify(btLog));
 const btAudio=new Audio(); btAudio.preload="none";
 const btPts=()=>{const p=[0,0];btLog.forEach(r=>[0,1].forEach(t=>{p[t]+=(r.ok[t][0]?1:0)+(r.ok[t][1]?1:0);}));return p;};
 function btSetState(st){ if(BT_BASE) btPut("state",{...st,t:{".sv":"timestamp"}}).catch(()=>{}); }
+const ATH_BODY=`<svg class="body" viewBox="0 0 44 54" aria-hidden="true">
+ <g class="arm l"><rect x="9" y="6" width="5" height="17" rx="2.5" fill="#f2c39c"/></g>
+ <g class="leg l"><rect x="15" y="27" width="6" height="22" rx="3" fill="#f2c39c"/><rect x="13" y="46" width="10" height="5" rx="2.5" fill="#fff"/></g>
+ <g class="leg r"><rect x="23" y="27" width="6" height="22" rx="3" fill="#f2c39c"/><rect x="21" y="46" width="10" height="5" rx="2.5" fill="#fff"/></g>
+ <path d="M12 4 q10-5 20 0 l1 22 h-22z" fill="var(--jersey)"/>
+ <rect x="11" y="22" width="22" height="9" rx="2" fill="#1d2233"/>
+ <rect x="16" y="9" width="12" height="8" rx="1.5" fill="#fff"/>
+ <text x="22" y="15.6" text-anchor="middle" font-size="7" font-weight="700" font-family="Arial,sans-serif" fill="#1d2233">NUM</text>
+ <g class="arm r"><rect x="30" y="6" width="5" height="17" rx="2.5" fill="#f2c39c"/></g>
+</svg>`;
 function btRunners(){
   const p=btPts(), max=BT.tracks.length*2;
   [btR0,btR1].forEach((r,t)=>{
-    if(!r.dataset.built){const rf=document.createElement("div");rf.className="rf";TEAMS[t][1].forEach(n=>{const f=face(n);if(f)rf.appendChild(f);});
-      const pt=document.createElement("div");pt.className="rpts";r.append(rf,pt);r.dataset.built=1;}
-    r.style.setProperty("--p",Math.min(1,p[t]/max));
+    if(!r.dataset.built){const pack=document.createElement("div");pack.className="pack";
+      // l'ordre est inversé pour que le premier joueur soit en tête du peloton
+      [...TEAMS[t][1]].reverse().forEach((n,k)=>{const a=document.createElement("div");a.className="ath";a.title=n;
+        a.innerHTML=ATH_BODY.replace("NUM",TEAMS[t][1].length-k);
+        const f=face(n,"head"); if(f){f.className="head";a.prepend(f);} else {const d=document.createElement("div");d.className="head ini";d.textContent=n[0];a.prepend(d);}
+        pack.appendChild(a);});
+      const pt=document.createElement("div");pt.className="rpts";r.append(pack,pt);r.dataset.built=1;r.classList.add("idle");r.dataset.p="0";}
+    const np=Math.min(1,p[t]/max);
+    if(String(np)!==r.dataset.p){r.dataset.p=String(np);r.classList.remove("idle");r.classList.add("running");
+      clearTimeout(r._rt);r._rt=setTimeout(()=>{r.classList.remove("running");r.classList.add("idle");},2300);}
+    r.style.setProperty("--p",np);
     r.querySelector(".rpts").textContent=p[t]+" pt"+(p[t]>1?"s":"");
     r.classList.toggle("leader",p[t]>p[1-t]);
   });
@@ -1287,7 +1413,7 @@ eReveal.addEventListener("click",()=>{drumCtxGet();reveal();});
 eReplay.addEventListener("click",()=>{drumCtxGet();reveal();});
 eEdit.addEventListener("click",()=>{eTimers.forEach(clearTimeout);eTimers=[];stage("entry");});
 zoom.addEventListener("click",e=>{if(e.target===zoom) closeZoom();});
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){ if(!bt.hidden) closeBT(); else if(!jd.hidden) closeJD(); else if(!fight.hidden) closeFight(); else if(!elec.hidden) closeElec(); else closeZoom(); }});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){ if(!sd.hidden) closeSD(); else if(!bt.hidden) closeBT(); else if(!jd.hidden) closeJD(); else if(!fight.hidden) closeFight(); else if(!elec.hidden) closeElec(); else closeZoom(); }});
 
 function tick(){
   const now=Date.now();
@@ -1301,7 +1427,7 @@ function tick(){
   else if(next){cdLbl.textContent="Fenêtre "+next+" dans"; cd.textContent=fmtLeft(unlockAt(next)-now);}
   else{cdLbl.textContent="Calendrier"; cd.textContent="complet";}
   cnt.textContent=opened.size+" ouverte"+(opened.size>1?"s":"")+" sur "+avail+" disponible"+(avail>1?"s":"");
-  startInfo.textContent="Vendredi 4 décembre : 19h30 à 2h00 (fenêtres 1 à 14). Samedi 5 décembre : 9h00 à 13h30 (fenêtres 15 à 24).";
+  startInfo.textContent="Vendredi 4 décembre : 19h30 à 2h00 (fenêtres 1 à 14). Samedi 5 décembre : 9h00 à 10h00 (fenêtres 15 à 17), puis 14h00 à 16h00 (fenêtres 18 à 22), et enfin 20h30 et 21h00 (fenêtres 23 et 24).";
   if(prevAvail!==null && avail>prevAvail){
     window.ringAlarm && window.ringAlarm();
     rvObj.textContent="🎅"; rvK.textContent="Ho ho ho !"; rvT.textContent=testOne?"Essai : toutes les fenêtres peuvent s'ouvrir":"C'est l'heure d'ouvrir la fenêtre "+avail;
