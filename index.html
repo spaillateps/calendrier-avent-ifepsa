@@ -175,6 +175,68 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
 @media (max-width:860px){.arena{grid-template-columns:1fr 1fr}.arena .board{grid-column:1/-1;grid-row:2}.score.sa{grid-column:1}.score.sb{grid-column:2}.score{padding:10px 6px}}
 @media (prefers-reduced-motion:reduce){.score.bump .snum{animation:none}}
 
+/* --- Trophées de la nuit --- */
+.tr{position:fixed;inset:0;z-index:72;overflow:auto;color:#fff;display:flex;flex-direction:column;align-items:center;gap:12px;
+  background:radial-gradient(ellipse at 50% 0%,#5a3a12,#1e1407 60%,#0d0903);
+  padding:calc(12px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.tr .ftop{color:#e8d6b0}
+.trintro,.trshow{width:100%;max-width:900px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.trcats{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.trcats li{background:#ffffff14;border:1px solid #e8b54a55;border-radius:999px;padding:6px 14px;font-size:.95rem}
+.trqr{background:#fff;padding:10px;border-radius:10px;width:min(220px,55vw)}
+.trqr img{width:100%;display:block;image-rendering:pixelated}
+.trqr p{margin:6px 0 0;color:var(--ink);font-size:.8rem}
+.tr .elive{color:#e8d6b0}.tr .elnum{color:var(--gold)}
+.trlocal{width:100%;display:flex;flex-direction:column;gap:8px;background:#ffffff0d;border-radius:10px;padding:12px}
+.trlocal .trl{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}
+.trlocal select{font:inherit;padding:4px 8px;border-radius:6px}
+.trnum{font-family:var(--f-mono);font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:#e8d6b0}
+.tricon{font-size:clamp(3rem,10vw,5rem);line-height:1}
+.trname{font-family:var(--f-display);font-weight:400;font-size:clamp(1.6rem,5vw,2.8rem);margin:0;line-height:1.1;text-wrap:balance}
+.trwin{min-height:clamp(150px,30vw,240px);display:flex;flex-wrap:wrap;justify-content:center;gap:22px;align-items:center}
+.trwin .who{display:flex;flex-direction:column;align-items:center;gap:6px;animation:trpop .8s cubic-bezier(.2,1.5,.4,1)}
+.trwin .who .face{width:clamp(110px,22vw,170px);height:clamp(110px,22vw,170px);border:5px solid var(--gold);box-shadow:0 0 40px #e8b54a99}
+.trwin .who b{font-family:var(--f-punch);font-size:clamp(2rem,6vw,3.4rem);text-transform:uppercase;color:var(--gold);line-height:1}
+.trwin .who small{color:#e8d6b0}
+.trwin .wait{font-family:var(--f-display);font-size:clamp(1.3rem,4vw,2rem);color:#e8d6b0}
+@keyframes trpop{from{transform:scale(.3);opacity:0}}
+.trrank{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;color:#e8d6b0;font-size:.9rem;min-height:1.4em}
+.trrank li{display:flex;align-items:center;gap:6px}.trrank .face{width:1.6em;height:1.6em;border-width:2px}
+/* téléphone */
+.tpcats{display:flex;flex-direction:column;gap:14px}
+.tpcat{background:#ffffff0f;border-radius:12px;padding:12px}
+.tpcat h3{margin:0 0 8px;font-family:var(--f-display);font-weight:400;font-size:1.2rem}
+.tpppl{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tpp{font:inherit;font-size:.85rem;font-weight:700;border:2px solid transparent;border-radius:10px;background:#ffffff14;color:var(--snow);padding:6px 4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px}
+.tpp .face{width:2.6em;height:2.6em}
+.tpp[aria-pressed="true"]{border-color:var(--gold);background:#e8b54a33}
+.tpp:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.trwin .who{animation:none}}
+/* --- Cérémonie : rideau rouge, or et tenues de soirée --- */
+.tr{background:
+  radial-gradient(ellipse 60% 45% at 50% 0%,#ffe2a04d,transparent 70%),
+  linear-gradient(180deg,transparent 70%,#000000d9),
+  repeating-linear-gradient(90deg,#4d070d 0 22px,#7d1320 22px 34px,#5e0a12 34px 48px,#3a050a 48px 60px)}
+.tr::before{content:"";position:fixed;inset:0 0 auto;height:42px;pointer-events:none;background:linear-gradient(180deg,#2a0306,#5e0a12 70%,transparent);
+  -webkit-mask:radial-gradient(circle 24px at 24px 0,#000 98%,transparent) 0 0/48px 42px repeat-x;mask:radial-gradient(circle 24px at 24px 0,#000 98%,transparent) 0 0/48px 42px repeat-x;z-index:0}
+.tr>*{position:relative;z-index:1}
+.tr .ftop{color:#f3d58a;border-bottom-color:#f3d58a55}
+.tr .jdt{color:#fff7e0;text-shadow:0 2px 0 #0008}.tr .jdt em{color:#f3c75a}
+.tr .trnum{color:#f3d58a}
+.tr .trname{color:#fff7e0;font-style:italic;text-shadow:0 2px 0 #0009}
+.tr .trcats li{background:#0000004d;border-color:#f3c75a88;color:#fff7e0}
+.trstage{position:relative;padding:8px 18px 0;border-radius:50% 50% 0 0/20px 20px 0 0;background:radial-gradient(ellipse at 50% 100%,#f3c75a40,transparent 70%)}
+.envl{font-size:clamp(3rem,10vw,5rem);animation:envw 1s ease-in-out infinite alternate}
+@keyframes envw{to{transform:rotate(-6deg) scale(1.06)}}
+.figw{position:relative;width:clamp(150px,24vw,220px);aspect-ratio:200/345}
+.figw .face{position:absolute;left:50%;top:0;transform:translateX(-50%);width:36%;height:auto;aspect-ratio:1;border:3px solid #f3c75a;box-shadow:0 4px 14px #0009;z-index:2}
+.trwin .who .figw .face{width:40%;height:auto;border-width:3px;box-shadow:0 4px 14px #0009}
+.figw svg{position:absolute;left:0;top:22%;width:100%;height:78%;overflow:visible}
+.figw .ini{display:grid;place-items:center;background:#f6cfa8;color:var(--ink);font-family:var(--f-punch);font-size:2rem;border-radius:50%}
+.trwin .who b{color:#f3c75a;text-shadow:0 0 24px #f3c75a88}
+.trwin .who small{color:#f3d58a}
+.trwin .wait{color:#fff7e0;font-style:italic}
+@media (prefers-reduced-motion:reduce){.envl{animation:none}}
 /* --- Jeu des 7 différences --- */
 .sd{position:fixed;inset:0;z-index:72;overflow:auto;color:#fff;display:flex;flex-direction:column;align-items:center;gap:10px;
   background:radial-gradient(ellipse at 50% 0%,#3a2a5c,#140d26 60%,#0a0716);
@@ -537,6 +599,35 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
     <div class="bpsave" id="bpSave"></div>
   </div>
 </main>
+<main class="vpage" id="trPhone" hidden>
+  <div class="vk">L'Avent à la demi-heure · Les trophées de la nuit</div>
+  <h1>Votez pour vos <em>champions</em> !</h1>
+  <p class="sub" id="tpIntro">Pour chaque trophée, touche un visage. Un seul vote par téléphone.</p>
+  <div class="tpcats" id="tpCats"></div>
+  <button class="btn-reveal vgo" id="tpGo" type="button" disabled>Choisis un gagnant pour chaque trophée</button>
+  <div class="vmsg" id="tpMsg" aria-live="polite"></div>
+</main>
+<div class="tr" id="tr" hidden role="dialog" aria-modal="true" aria-label="Les trophées de la nuit">
+  <div class="ftop"><span>Les trophées de la nuit</span><button class="zclose" id="trClose" type="button">Fermer</button></div>
+  <section class="trintro" id="trIntro">
+    <h2 class="jdt">La cérémonie des <em>trophées</em></h2>
+    <p class="jdrules" id="trRules"></p>
+    <ul class="trcats" id="trCats"></ul>
+    <div class="trqr" id="trQr"></div>
+    <div class="trlocal" id="trLocal" hidden></div>
+    <div class="elive"><span class="elnum" id="trCount">0</span><span>votants</span></div>
+    <div class="eact2"><button class="btn-reveal jdwinbtn" id="trGo" type="button">🏆 Révéler les trophées</button></div>
+    <button class="btn-link light" id="trWipe" type="button">Remettre les votes à zéro</button>
+  </section>
+  <section class="trshow" id="trShow" hidden>
+    <div class="trnum" id="trNum"></div>
+    <div class="tricon" id="trIcon"></div>
+    <h3 class="trname" id="trName"></h3>
+    <div class="trstage"><div class="trwin" id="trWin"></div></div>
+    <ol class="trrank" id="trRank"></ol>
+    <div class="eact2"><button class="btn-reveal" id="trNext" type="button" hidden>Trophée suivant</button></div>
+  </section>
+</div>
 <div class="sd" id="sd" hidden role="dialog" aria-modal="true" aria-label="Jeu des 7 différences">
   <div class="ftop"><span>Jeu des 7 différences</span><button class="zclose" id="sdClose" type="button">Fermer</button></div>
   <div class="sdhead">
@@ -680,11 +771,11 @@ const ITEMS = [
  ["🍽️","À table !","Il est 22h : tout le monde passe à table. Bon appétit !"],
  ["🎤","C'est l'heure du karaoké !","Il est 22h30 : chaque équipe choisit deux lutins et chante les chansons cachées dans leurs cadeaux !"],
  ["🥩","On passe à la viande !","Il est 23h : place au plat de résistance. Bon appétit !"],
- ["🦉","Une chouette hulotte","Elle surveille les fenêtres pas encore ouvertes."],
+ ["📸","C'est l'heure de la photo !","On immortalise le week-end : tous devant le sapin avec son plus beau sourire !"],
  ["🎁","C'est l'heure des cadeaux !","Il est minuit : tout le monde au pied du sapin, c'est l'heure d'ouvrir les cadeaux !!"],
  ["🎧","Les filles aux platines !","Il est minuit et demi : les filles prennent le contrôle de la musique. Laissez sortir la DJ qui sommeille en vous !!"],
  ["🍊","Une clémentine","La tradition dans les souliers. Elle sent toute la pièce."],
- ["🕰️","Une horloge qui retarde","Exactement de 30 minutes. Ça explique beaucoup de choses."],
+ ["🏆","Les trophées de la nuit","Votez pour le roi de la piste, la plus belle descente, la voix d'or du karaoké… puis place à la cérémonie !"],
  ["🌙","C'est la fin de la soirée… ou pas !","On se sert un verre, les Pères Noël vous laissent tranquilles. Bonne nuit, ou bonne fin de soirée… On se retrouve demain pour de nouvelles aventures !!!"],
  ["🥐","Viennoiseries et café !","Rien de mieux que des viennoiseries et un bon café pour commencer la journée !"],
  ["🩱","Matinée détente !","Sortez les maillots et les serviettes : départ des traîneaux à 10h15…"],
@@ -782,6 +873,7 @@ const BIG = {
   7:{ jd:"karaoke", emoji:"🎤", title:"Karaoké" },
   8:{ emoji:"🥩", title:"On passe à la viande !", text:"Il est 23h, place au plat de résistance. Bon appétit !" },
   11:{ emoji:"💃", title:"Les filles aux platines !", text:"Les filles prennent le contrôle de la musique : laissez sortir la DJ qui sommeille en vous !!" },
+  13:{ trophy:true, emoji:"🏆", title:"Trophées" },
   14:{ emoji:"🥂", title:"C'est la fin de la soirée… ou pas !", text:"On se sert un verre, les Pères Noël vous laissent tranquilles. Bonne nuit, ou bonne fin de soirée… On se retrouve demain pour de nouvelles aventures !!!" },
   18:{ emoji:"🍻", title:"Alors ce spa ? Bien ?", text:"Après ce petit moment détente bien mérité, il est temps de reprendre les choses sérieuses : APÉRO !!!" },
   19:{ diff:true, emoji:"🔍", title:"7 différences" },
@@ -791,6 +883,7 @@ const BIG = {
   16:{ emoji:"🛷", title:"Préparez-vous pour une matinée détente !", text:"Sortez les maillots et les serviettes : départ des traîneaux à 10h15…" },
   17:{ emoji:"🥂", title:"Tu es prêt ?", text:"Pourquoi ne pas prendre un petit blanc… histoire d'attendre les derniers 😉" },
   15:{ emoji:"🥐", title:"Bonjour tout le monde !", text:"Rien de mieux que des viennoiseries et un bon café pour commencer la journée !" },
+  9:{ emoji:"📸", title:"C'est l'heure de la photo !", text:"On immortalise le week-end : tous devant le sapin avec son plus beau sourire !" },
   10:{ emoji:"🎁", title:"Il est minuit !", text:"C'est l'heure d'ouvrir les cadeaux !!" }
 };
 // Lien du sondage (Microsoft Forms, Google Forms…) : le QR code est fabriqué à partir de ce lien
@@ -810,6 +903,7 @@ function openZoom(n){
   if(b.fight){ openFight(); return; }
   if(b.bt){ openBT(); return; }
   if(b.diff){ openSD(); return; }
+  if(b.trophy){ openTR(); return; }
   if(b.jd){ openJD(b.jd===true?"jd":b.jd); return; }
   zball.className="zball "+([...cell.classList].find(c=>c.startsWith("c-"))||"c-gold");
   zT.textContent=b.title; zP.textContent=b.text;
@@ -1076,6 +1170,146 @@ jdRefQr.addEventListener("click",()=>{
   else jdQr.innerHTML=`<p>Le QR code de l'arbitre fonctionne sur le site en ligne.</p>`;
   jdQr.hidden=false;
 });
+
+// ===== Trophées de la nuit : vote sur téléphone (#trophees), cérémonie sur le calendrier =====
+const TROPHIES=[
+  {icon:"🕺",name:"Roi ou reine de la piste"},
+  {icon:"🍹",name:"La plus belle descente"},
+  {icon:"🎤",name:"La voix d'or du karaoké"},
+  {icon:"🥩",name:"Le meilleur coup de fourchette"},
+  {icon:"🔥",name:"Le plus mauvais perdant"},
+  {icon:"😴",name:"Celui ou celle qui dormira le plus demain"}
+];
+const TR_PEOPLE=CANDS.map(c=>c[0]);
+const TR_DB=(typeof DB_URL!=="undefined"&&DB_URL)?DB_URL.replace(/\/+$/,"")+"/votes/trophees-"+ELECTION+".json":"";
+let trLocalVotes=[], trPoll=0, trIdx=0, trTally=null, trTimers=[];
+const tr=document.getElementById("tr");
+async function trFetch(){ if(!TR_DB) return trLocalVotes;
+  const r=await fetch(TR_DB,{cache:"no-store"}); if(!r.ok) throw 0; const d=(await r.json())||{}; return Object.values(d).map(x=>x&&x.v).filter(Boolean); }
+function trCountAll(list){ return TROPHIES.map((_,i)=>{const c={};TR_PEOPLE.forEach(n=>c[n]=0);list.forEach(v=>{if(v[i]!=null&&c[v[i]]!=null)c[v[i]]++;});return c;}); }
+async function trRefresh(){ try{const l=await trFetch(); trCount.textContent=l.length; trGo.disabled=!l.length; return l;}catch(e){return null;} }
+// Fanfare de remise de prix (cuivres et timbales synthétisés, mélodie originale)
+function trFanfare(){
+  const c=drumCtxGet(); if(!c) return;
+  const out=c.createGain(); out.gain.value=.55;
+  const comp=c.createDynamicsCompressor(); out.connect(comp); comp.connect(c.destination);
+  const dl=c.createDelay(); dl.delayTime.value=.09; const fb=c.createGain(); fb.gain.value=.25; out.connect(dl); dl.connect(fb); fb.connect(dl); fb.connect(comp);
+  const N={G3:196,C4:261.63,E4:329.63,G4:392,A4:440,B4:493.88,C5:523.25,D5:587.33,E5:659.25,F5:698.46,G5:783.99,C6:1046.5};
+  const brass=(f,t,d,v)=>{
+    const g=c.createGain(); g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(v,t+.03); g.gain.setValueAtTime(v*.85,t+Math.max(.05,d-.08)); g.gain.exponentialRampToValueAtTime(.001,t+d+.25);
+    const lp=c.createBiquadFilter(); lp.type="lowpass"; lp.Q.value=2; lp.frequency.setValueAtTime(f*2,t); lp.frequency.linearRampToValueAtTime(f*6,t+.06); lp.frequency.linearRampToValueAtTime(f*3.5,t+d);
+    lp.connect(g); g.connect(out);
+    [-6,0,7].forEach(dt=>{const o=c.createOscillator(); o.type="sawtooth"; o.frequency.value=f; o.detune.value=dt;
+      const vib=c.createOscillator(),vg=c.createGain(); vib.frequency.value=5.5; vg.gain.value=d>.4?f*.008:0; vib.connect(vg); vg.connect(o.frequency);
+      o.connect(lp); o.start(t); vib.start(t); o.stop(t+d+.3); vib.stop(t+d+.3);});
+  };
+  const timp=(f,t,v)=>{const o=c.createOscillator(),g=c.createGain(); o.type="sine"; o.frequency.setValueAtTime(f*1.4,t); o.frequency.exponentialRampToValueAtTime(f,t+.08);
+    g.gain.setValueAtTime(v,t); g.gain.exponentialRampToValueAtTime(.001,t+.9); o.connect(g); g.connect(out); o.start(t); o.stop(t+1);};
+  const t0=c.currentTime+.08, b=.16;
+  // appel de trompettes : ta-ta-ta TAAA, ta-ta-ta TAAA, montée, accord final
+  const mel=[["G4",0,b],["G4",1,b],["G4",2,b],["C5",3,b*3.4],["E5",6.5,b],["E5",7.5,b],["E5",8.5,b],["G5",9.5,b*3.4],
+             ["F5",13,b],["E5",14,b],["D5",15,b],["E5",16,b*1.6],["G5",17.8,b*1.6],["C6",19.6,b*9]];
+  mel.forEach(([n,at,d])=>brass(N[n],t0+at*b,d,.16));
+  [["C4",3],["E4",9.5],["G3",13],["C4",19.6]].forEach(([n,at])=>timp(N[n]/2,t0+at*b,.7));
+  // accord tenu sous la dernière note + roulement de timbales
+  ["C4","E4","G4","C5"].forEach(n=>brass(N[n],t0+19.6*b,b*9,.07));
+  for(let i=0;i<14;i++) timp(65.4,t0+(16+i*.25)*b,.12+.02*i);
+}
+// Silhouettes de soirée : costume pour les garçons, robe pour les filles, statuette dorée dans les mains
+const OUTFIT={arthur:"suit",guigui:"suit"};
+const STATUETTE=`<g class="stat"><rect x="86" y="118" width="28" height="14" rx="2" fill="#1b1b1b"/><rect x="84" y="116" width="32" height="4" rx="1" fill="#c9a03a"/>
+  <path d="M95 116 L97 82 Q100 76 103 82 L105 116Z" fill="url(#gold)"/><circle cx="100" cy="72" r="7" fill="url(#gold)"/>
+  <path d="M100 52 l4 9 10 1 -8 6 3 10 -9-6 -9 6 3-10 -8-6 10-1z" fill="url(#gold)" stroke="#fff3c0" stroke-width=".8"/></g>`;
+const GOLD=`<defs><linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#a57a1c"/><stop offset=".45" stop-color="#ffe38a"/><stop offset=".6" stop-color="#e9b93e"/><stop offset="1" stop-color="#8a6212"/></linearGradient></defs>`;
+const SUIT=`<svg viewBox="0 0 200 260" preserveAspectRatio="xMidYMin meet" aria-hidden="true">${GOLD}
+  <rect x="88" y="0" width="24" height="18" fill="#f2c39c"/>
+  <path d="M48 26 Q100 6 152 26 L160 170 L40 170Z" fill="#141418"/>
+  <path d="M88 14 L100 60 L112 14Z" fill="#fff"/><path d="M92 20 l8 6 8-6 0 8 -8-4 -8 4z" fill="#111"/>
+  <path d="M88 14 L100 70 L78 30Z" fill="#26262c"/><path d="M112 14 L100 70 L122 30Z" fill="#26262c"/>
+  <circle cx="100" cy="88" r="2" fill="#555"/><circle cx="100" cy="104" r="2" fill="#555"/>
+  <path d="M60 170 L64 250 L94 250 L100 176 L106 250 L136 250 L140 170Z" fill="#101014"/>
+  <ellipse cx="78" cy="252" rx="18" ry="6" fill="#050505"/><ellipse cx="122" cy="252" rx="18" ry="6" fill="#050505"/>
+  <path d="M50 30 Q34 80 60 112 L88 124 L92 114 L70 100 Q60 76 66 44Z" fill="#141418"/>
+  <path d="M150 30 Q166 80 140 112 L112 124 L108 114 L130 100 Q140 76 134 44Z" fill="#141418"/>
+  ${STATUETTE}<circle cx="90" cy="121" r="7" fill="#f2c39c"/><circle cx="110" cy="121" r="7" fill="#f2c39c"/></svg>`;
+const DRESS=`<svg viewBox="0 0 200 260" preserveAspectRatio="xMidYMin meet" aria-hidden="true">${GOLD}
+  <rect x="90" y="0" width="20" height="18" fill="#f2c39c"/>
+  <path d="M62 22 Q100 8 138 22 L132 44 L68 44Z" fill="#f2c39c"/>
+  <path d="M68 40 Q84 52 100 44 Q116 52 132 40 L128 96 Q100 104 72 96Z" fill="#b3122b"/>
+  <path d="M72 96 Q100 104 128 96 Q150 170 168 252 Q100 262 32 252 Q50 170 72 96Z" fill="#b3122b"/>
+  <path d="M100 100 Q104 180 96 254" stroke="#7d0c1e" stroke-width="3" fill="none" opacity=".6"/>
+  <path d="M72 96 Q100 104 128 96" stroke="#f3c75a" stroke-width="3" fill="none"/>
+  <path d="M64 26 Q48 80 70 110 L88 124 L92 114 L76 100 Q66 76 72 44Z" fill="#f2c39c"/>
+  <path d="M136 26 Q152 80 130 110 L112 124 L108 114 L124 100 Q134 76 128 44Z" fill="#f2c39c"/>
+  ${STATUETTE}<circle cx="90" cy="121" r="6.5" fill="#f2c39c"/><circle cx="110" cy="121" r="6.5" fill="#f2c39c"/></svg>`;
+function figureFor(n){
+  const w=document.createElement("div"); w.className="figw";
+  w.innerHTML=OUTFIT[keyOf(n)]==="suit"?SUIT:DRESS;
+  const f=face(n); if(f){w.prepend(f);} else {const d=document.createElement("div");d.className="face ini";d.textContent=n[0];w.prepend(d);}
+  return w;
+}
+// Musique de cérémonie (en boucle tant que l'écran des trophées est ouvert)
+const awards=new Audio(); awards.loop=true; awards.preload="none";
+function awardsVol(v,ms){const a=awards.volume,t0=performance.now();const step=t=>{const k=Math.min(1,(t-t0)/ms);awards.volume=a+(v-a)*k;if(k<1)requestAnimationFrame(step);};requestAnimationFrame(step);}
+function awardsPlay(){ if(!awards.src) awards.src="awards.mp3"; awards.volume=.8; const p=awards.play(); if(p&&p.catch) p.catch(()=>{}); }
+function awardsStop(){ awards.pause(); try{awards.currentTime=0;}catch(e){} }
+function openTR(){
+  if(musicBtn.classList.contains("on")) musicBtn.click();
+  awardsPlay();
+  tr.hidden=false; tr.scrollTop=0; trIntro.hidden=false; trShow.hidden=true;
+  trRules.textContent="Cette nuit, on décerne "+TROPHIES.length+" trophées ! Scannez le QR code et votez pour vos champions dans chaque catégorie. Les résultats restent secrets jusqu'à la cérémonie.";
+  trCats.innerHTML=""; TROPHIES.forEach(t=>{const li=document.createElement("li");li.textContent=t.icon+" "+t.name;trCats.appendChild(li);});
+  const url=location.origin+location.pathname+"#trophees";
+  if(TR_DB&&window.qrcode&&/^https?:/.test(location.protocol)){try{const q=qrcode(0,"M");q.addData(url);q.make();trQr.innerHTML=`<img alt="QR code du vote des trophées" src="${q.createDataURL(8,0)}"><p>Scannez pour voter</p>`;trQr.hidden=false;}catch(e){}}
+  else trQr.hidden=true;
+  trWipe.hidden=!TR_DB; trLocal.hidden=!!TR_DB;
+  if(!TR_DB){ // sans base de données : on vote directement sur l'écran
+    trLocal.innerHTML=`<b>Vote sur cet écran</b>`+TROPHIES.map((t,i)=>`<div class="trl"><span>${t.icon} ${t.name}</span><select id="trS${i}"><option value="">—</option>${TR_PEOPLE.map(n=>`<option>${n}</option>`).join("")}</select></div>`).join("")+`<div class="eact2"><button class="btn" id="trAdd" type="button">Ajouter ce vote</button></div>`;
+    trAdd.onclick=()=>{const v=TROPHIES.map((_,i)=>document.getElementById("trS"+i).value||null);if(v.every(x=>!x))return;trLocalVotes.push(v);TROPHIES.forEach((_,i)=>document.getElementById("trS"+i).value="");trRefresh();};
+  }
+  trRefresh(); clearInterval(trPoll); if(TR_DB) trPoll=setInterval(()=>{if(!trIntro.hidden)trRefresh();},3000);
+}
+function closeTR(){awardsStop();clearInterval(trPoll);trTimers.forEach(clearTimeout);trTimers=[];tr.hidden=true;}
+trClose.addEventListener("click",closeTR);
+let trWipeArmed=false;
+trWipe.addEventListener("click",async()=>{ if(!trWipeArmed){trWipeArmed=true;trWipe.textContent="Confirmer : effacer tous les votes";setTimeout(()=>{trWipeArmed=false;trWipe.textContent="Remettre les votes à zéro";},4000);return;}
+  trWipeArmed=false;trWipe.textContent="Remettre les votes à zéro";try{await fetch(TR_DB,{method:"DELETE"});}catch(e){} trRefresh(); });
+trGo.addEventListener("click",async()=>{ drumCtxGet(); if(musicBtn.classList.contains("on")) musicBtn.click();
+  const l=await trRefresh(); if(!l||!l.length) return; trTally=trCountAll(l); trIdx=0; trIntro.hidden=true; trShow.hidden=false; trReveal(); });
+trNext.addEventListener("click",()=>{ if(trIdx<TROPHIES.length-1){trIdx++;trReveal();} else closeTR(); });
+function trReveal(){
+  trTimers.forEach(clearTimeout); trTimers=[];
+  const t=TROPHIES[trIdx], c=trTally[trIdx], rows=Object.entries(c).sort((a,b)=>b[1]-a[1]), top=rows[0][1];
+  trNum.textContent="Trophée "+(trIdx+1)+" / "+TROPHIES.length; trIcon.textContent=t.icon; trName.textContent=t.name;
+  trWin.innerHTML=`<div class="who"><span class="envl" aria-hidden="true">✉️</span><span class="wait">Et le trophée est attribué à…</span></div>`; awardsVol(.25,600); trRank.innerHTML=""; trNext.hidden=true;
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches; if(!reduce) drumRoll(2.8);
+  trTimers.push(setTimeout(()=>{ if(!reduce) drumCrash(); awardsVol(.8,1500);
+    trWin.innerHTML="";
+    if(!top){trWin.innerHTML=`<span class="wait">Personne n'a voté pour ce trophée !</span>`;}
+    else rows.filter(r=>r[1]===top).forEach(([n,v])=>{const d=document.createElement("div");d.className="who";d.appendChild(figureFor(n));
+      const b=document.createElement("b");b.textContent=n;const s=document.createElement("small");s.textContent=v+" voix"+(rows.filter(r=>r[1]===top).length>1?" · ex aequo":"");d.append(b,s);trWin.appendChild(d);});
+    rows.filter(r=>r[1]<top&&r[1]>0).slice(0,3).forEach(([n,v])=>{const li=document.createElement("li");li.appendChild(personEl(n));const s=document.createElement("span");s.textContent="· "+v;li.appendChild(s);trRank.appendChild(li);});
+    trNext.hidden=false; trNext.textContent=trIdx<TROPHIES.length-1?"Trophée suivant ▶":"Fin de la cérémonie";
+  },reduce?0:3000));
+}
+// téléphone : #trophees
+function initTrPhone(){
+  document.querySelector(".wrap").hidden=true; alarmBtn.hidden=true; musicBtn.hidden=true; trPhone.hidden=false;
+  document.title="Les trophées de la nuit";
+  if(!TR_DB){tpIntro.textContent="Le vote n'est pas encore ouvert.";tpGo.hidden=true;return;}
+  const key="avent30-trophees-"+ELECTION, done=()=>{tpCats.hidden=true;tpGo.hidden=true;tpIntro.hidden=true;tpMsg.textContent="✔ Merci ! Tes votes sont enregistrés. Rendez-vous devant le sapin pour la cérémonie !";};
+  if(store.get(key)){done();return;}
+  const pick=TROPHIES.map(()=>null);
+  tpCats.innerHTML=TROPHIES.map((t,i)=>`<div class="tpcat"><h3>${t.icon} ${t.name}</h3><div class="tpppl" data-i="${i}">${TR_PEOPLE.map(n=>`<button class="tpp" type="button" aria-pressed="false" data-n="${n}"></button>`).join("")}</div></div>`).join("");
+  tpCats.querySelectorAll(".tpp").forEach(b=>{const f=face(b.dataset.n);if(f)b.appendChild(f);const s=document.createElement("span");s.textContent=b.dataset.n;b.appendChild(s);});
+  tpCats.addEventListener("click",e=>{const b=e.target.closest(".tpp");if(!b)return;const g=b.parentElement,i=+g.dataset.i;pick[i]=b.dataset.n;
+    g.querySelectorAll(".tpp").forEach(x=>x.setAttribute("aria-pressed",x===b));
+    const left=pick.filter(x=>!x).length; tpGo.disabled=left>0; tpGo.textContent=left?"Encore "+left+" trophée"+(left>1?"s":"")+" à voter":"Envoyer mes votes";});
+  tpGo.addEventListener("click",async()=>{tpGo.disabled=true;tpGo.textContent="Envoi…";
+    try{const r=await fetch(TR_DB,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({v:pick,t:{".sv":"timestamp"}})});if(!r.ok)throw 0;store.set(key,"1");done();}
+    catch(e){tpGo.disabled=false;tpGo.textContent="Réessayer l'envoi";tpMsg.textContent="L'envoi n'est pas passé. Vérifie ta connexion.";}});
+}
+if(location.hash==="#trophees") initTrPhone();
 
 // ===== Jeu des 7 différences (coordonnées dans la photo de 1125 x 844) =====
 const SD={w:1125,h:844,diffs:[
@@ -1413,7 +1647,7 @@ eReveal.addEventListener("click",()=>{drumCtxGet();reveal();});
 eReplay.addEventListener("click",()=>{drumCtxGet();reveal();});
 eEdit.addEventListener("click",()=>{eTimers.forEach(clearTimeout);eTimers=[];stage("entry");});
 zoom.addEventListener("click",e=>{if(e.target===zoom) closeZoom();});
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){ if(!sd.hidden) closeSD(); else if(!bt.hidden) closeBT(); else if(!jd.hidden) closeJD(); else if(!fight.hidden) closeFight(); else if(!elec.hidden) closeElec(); else closeZoom(); }});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){ if(!tr.hidden) closeTR(); else if(!sd.hidden) closeSD(); else if(!bt.hidden) closeBT(); else if(!jd.hidden) closeJD(); else if(!fight.hidden) closeFight(); else if(!elec.hidden) closeElec(); else closeZoom(); }});
 
 function tick(){
   const now=Date.now();
