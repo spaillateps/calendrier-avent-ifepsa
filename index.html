@@ -1217,31 +1217,45 @@ function trFanfare(){
 }
 // Silhouettes de soirée : costume pour les garçons, robe pour les filles, statuette dorée dans les mains
 const OUTFIT={arthur:"suit",guigui:"suit"};
-const STATUETTE=`<g class="stat"><rect x="86" y="118" width="28" height="14" rx="2" fill="#1b1b1b"/><rect x="84" y="116" width="32" height="4" rx="1" fill="#c9a03a"/>
-  <path d="M95 116 L97 82 Q100 76 103 82 L105 116Z" fill="url(#gold)"/><circle cx="100" cy="72" r="7" fill="url(#gold)"/>
-  <path d="M100 52 l4 9 10 1 -8 6 3 10 -9-6 -9 6 3-10 -8-6 10-1z" fill="url(#gold)" stroke="#fff3c0" stroke-width=".8"/></g>`;
+const STATUETTE=`<g class="stat">
+  <path d="M80 70 Q66 70 66 82 Q66 96 84 98" fill="none" stroke="url(#gold)" stroke-width="5"/>
+  <path d="M120 70 Q134 70 134 82 Q134 96 116 98" fill="none" stroke="url(#gold)" stroke-width="5"/>
+  <path d="M76 62 H124 Q124 96 100 104 Q76 96 76 62Z" fill="url(#gold)" stroke="#8a6212" stroke-width="1"/>
+  <ellipse cx="100" cy="62" rx="24" ry="4" fill="#ffe9a8"/>
+  <path d="M100 70 l3 6 7 .8 -5.2 4.6 1.6 6.8 -6.4-3.6 -6.4 3.6 1.6-6.8 -5.2-4.6 7-.8z" fill="#fff6d0" opacity=".9"/>
+  <rect x="96" y="103" width="8" height="10" fill="url(#gold)"/>
+  <path d="M86 113 H114 L118 121 H82Z" fill="url(#gold)"/>
+  <rect x="80" y="121" width="40" height="10" rx="2" fill="#1b1b1b"/><rect x="88" y="124" width="24" height="4" rx="1" fill="#c9a03a"/></g>`;
 const GOLD=`<defs><linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#a57a1c"/><stop offset=".45" stop-color="#ffe38a"/><stop offset=".6" stop-color="#e9b93e"/><stop offset="1" stop-color="#8a6212"/></linearGradient></defs>`;
 const SUIT=`<svg viewBox="0 0 200 260" preserveAspectRatio="xMidYMin meet" aria-hidden="true">${GOLD}
-  <rect x="88" y="0" width="24" height="18" fill="#f2c39c"/>
-  <path d="M48 26 Q100 6 152 26 L160 170 L40 170Z" fill="#141418"/>
-  <path d="M88 14 L100 60 L112 14Z" fill="#fff"/><path d="M92 20 l8 6 8-6 0 8 -8-4 -8 4z" fill="#111"/>
-  <path d="M88 14 L100 70 L78 30Z" fill="#26262c"/><path d="M112 14 L100 70 L122 30Z" fill="#26262c"/>
-  <circle cx="100" cy="88" r="2" fill="#555"/><circle cx="100" cy="104" r="2" fill="#555"/>
-  <path d="M60 170 L64 250 L94 250 L100 176 L106 250 L136 250 L140 170Z" fill="#101014"/>
-  <ellipse cx="78" cy="252" rx="18" ry="6" fill="#050505"/><ellipse cx="122" cy="252" rx="18" ry="6" fill="#050505"/>
-  <path d="M50 30 Q34 80 60 112 L88 124 L92 114 L70 100 Q60 76 66 44Z" fill="#141418"/>
-  <path d="M150 30 Q166 80 140 112 L112 124 L108 114 L130 100 Q140 76 134 44Z" fill="#141418"/>
-  ${STATUETTE}<circle cx="90" cy="121" r="7" fill="#f2c39c"/><circle cx="110" cy="121" r="7" fill="#f2c39c"/></svg>`;
+  <defs><linearGradient id="satin" x1="0" x2="1"><stop offset="0" stop-color="#2c2c34"/><stop offset=".5" stop-color="#55555f"/><stop offset="1" stop-color="#26262d"/></linearGradient>
+  <linearGradient id="cloth" x1="0" x2="1"><stop offset="0" stop-color="#0c0c10"/><stop offset=".5" stop-color="#1d1d24"/><stop offset="1" stop-color="#0a0a0d"/></linearGradient></defs>
+  <rect x="91" y="0" width="18" height="16" fill="#f2c39c"/>
+  <path d="M72 168 L76 248 L96 248 L100 172 L104 248 L124 248 L128 168Z" fill="url(#cloth)"/>
+  <path d="M72 250 Q60 254 74 256 L98 256 L96 247 L76 247Z" fill="#050505"/><path d="M128 250 Q140 254 126 256 L102 256 L104 247 L124 247Z" fill="#050505"/>
+  <path d="M60 24 Q100 10 140 24 L136 92 Q134 130 130 170 L70 170 Q66 130 64 92Z" fill="url(#cloth)"/>
+  <path d="M90 12 L100 70 L110 12Z" fill="#fbfbfb"/>
+  <path d="M92 18 l8 5 8-5 0 7 -8-4 -8 4z" fill="#0a0a0a"/>
+  <path d="M90 12 L100 92 L82 50 L68 36 L80 34Z" fill="url(#satin)"/><path d="M110 12 L100 92 L118 50 L132 36 L120 34Z" fill="url(#satin)"/>
+  <path d="M100 92 L100 170" stroke="#000" stroke-width="1.2" opacity=".6"/><circle cx="100" cy="104" r="2.2" fill="#3a3a44"/>
+  <path d="M112 46 l14 -2 0 6 -14 2z" fill="#fff"/>
+  <path d="M60 26 Q46 76 56 124 Q62 142 76 150 L82 140 Q70 132 68 120 Q66 66 72 38Z" fill="url(#cloth)"/>
+  <path d="M140 26 Q154 76 144 124 Q138 142 124 150 L118 140 Q130 132 132 120 Q134 66 128 38Z" fill="url(#cloth)"/>
+  <path d="M72 144 l10 5 -3 5 -10 -5z" fill="#fbfbfb"/><path d="M128 144 l-10 5 3 5 10 -5z" fill="#fbfbfb"/>
+  <g transform="translate(0,24)">${STATUETTE}<circle cx="80" cy="126" r="7" fill="#f2c39c"/><circle cx="120" cy="126" r="7" fill="#f2c39c"/></g></svg>`;
 const DRESS=`<svg viewBox="0 0 200 260" preserveAspectRatio="xMidYMin meet" aria-hidden="true">${GOLD}
-  <rect x="90" y="0" width="20" height="18" fill="#f2c39c"/>
-  <path d="M62 22 Q100 8 138 22 L132 44 L68 44Z" fill="#f2c39c"/>
-  <path d="M68 40 Q84 52 100 44 Q116 52 132 40 L128 96 Q100 104 72 96Z" fill="#b3122b"/>
-  <path d="M72 96 Q100 104 128 96 Q150 170 168 252 Q100 262 32 252 Q50 170 72 96Z" fill="#b3122b"/>
-  <path d="M100 100 Q104 180 96 254" stroke="#7d0c1e" stroke-width="3" fill="none" opacity=".6"/>
-  <path d="M72 96 Q100 104 128 96" stroke="#f3c75a" stroke-width="3" fill="none"/>
-  <path d="M64 26 Q48 80 70 110 L88 124 L92 114 L76 100 Q66 76 72 44Z" fill="#f2c39c"/>
-  <path d="M136 26 Q152 80 130 110 L112 124 L108 114 L124 100 Q134 76 128 44Z" fill="#f2c39c"/>
-  ${STATUETTE}<circle cx="90" cy="121" r="6.5" fill="#f2c39c"/><circle cx="110" cy="121" r="6.5" fill="#f2c39c"/></svg>`;
+  <defs><linearGradient id="silk" x1="0" x2="1"><stop offset="0" stop-color="#6e0a1c"/><stop offset=".38" stop-color="#c8203e"/><stop offset=".55" stop-color="#e8506a"/><stop offset=".72" stop-color="#b51a36"/><stop offset="1" stop-color="#5e0816"/></linearGradient></defs>
+  <path d="M92 0 H108 V16 Q130 20 136 30 L126 64 L100 84 L74 64 L64 30 Q70 20 92 16Z" fill="#f2c39c"/>
+  <path d="M112 176 Q118 214 116 252 L128 252 Q130 214 124 176Z" fill="#eab48c"/>
+  <path d="M72 30 L80 30 L100 84 L120 30 L128 30 L130 64 Q126 84 124 100 Q120 116 126 140 Q130 168 128 186 Q148 220 166 254 Q100 262 34 254 Q52 220 72 186 Q70 168 74 140 Q80 116 76 100 Q74 84 70 64Z" fill="url(#silk)"/>
+  <path d="M116 180 Q122 214 120 254 L130 254 Q132 212 124 180Z" fill="#eab48c"/>
+  <path d="M74 32 L100 84 L126 32" fill="none" stroke="#f3c75a" stroke-width="1.6"/>
+  <path d="M76 100 Q100 106 124 100" stroke="#f3c75a" stroke-width="2.4" fill="none"/>
+  <path d="M86 110 Q90 180 84 252" stroke="#ffffff" stroke-width="2" opacity=".18" fill="none"/>
+  <path d="M66 28 Q52 80 62 124 Q66 142 78 152 L84 142 Q74 132 72 120 Q70 70 76 36Z" fill="#f2c39c"/>
+  <path d="M134 28 Q148 80 138 124 Q134 142 122 152 L116 142 Q126 132 128 120 Q130 70 124 36Z" fill="#f2c39c"/>
+  <path d="M66 136 l8 4" stroke="#f3c75a" stroke-width="2.5"/><path d="M134 136 l-8 4" stroke="#f3c75a" stroke-width="2.5"/>
+  <g transform="translate(0,24)">${STATUETTE}<circle cx="80" cy="126" r="6.5" fill="#f2c39c"/><circle cx="120" cy="126" r="6.5" fill="#f2c39c"/></g></svg>`;
 function figureFor(n){
   const w=document.createElement("div"); w.className="figw";
   w.innerHTML=OUTFIT[keyOf(n)]==="suit"?SUIT:DRESS;
