@@ -212,6 +212,30 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
 .tpp[aria-pressed="true"]{border-color:var(--gold);background:#e8b54a33}
 .tpp:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){.trwin .who{animation:none}}
+/* --- Résultats finaux --- */
+.finrows{display:flex;flex-direction:column;gap:8px;width:min(560px,100%)}
+.finrow{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#0000004d;border:1px solid #f3c75a55;border-radius:10px;padding:8px 12px;color:#fff7e0}
+.finrow select{font:inherit;padding:4px 8px;border-radius:6px}
+.finboard{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;width:100%}
+.finteam{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px;border-radius:12px;background:#0000004d;border-top:5px solid var(--tc)}
+.finteam .fname{font-family:var(--f-punch);font-size:clamp(1.4rem,4vw,2.2rem);text-transform:uppercase;color:var(--tc)}
+.finteam .ffaces{display:flex;gap:4px}.finteam .ffaces .face{width:2.6em;height:2.6em}
+.finteam .fpts{font-family:var(--f-display);font-size:clamp(4rem,12vw,7rem);line-height:1;color:#fff7e0;font-variant-numeric:tabular-nums}
+.finteam.bump .fpts{animation:bump .8s cubic-bezier(.2,1.6,.4,1)}
+.finvs{font-family:var(--f-punch);font-size:2rem;color:#f3c75a}
+.finlog{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;width:min(560px,100%)}
+.finlog li{display:flex;justify-content:space-between;gap:10px;padding:8px 14px;border-radius:999px;background:#0000005c;color:#fff7e0;animation:trpop .6s cubic-bezier(.2,1.5,.4,1)}
+.finlog li b{color:var(--tc)}
+.finwin{display:flex;flex-direction:column;align-items:center;gap:10px}
+.finwin .figs{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.finwin .figs .figw{width:clamp(110px,16vw,170px)}
+.finwin h3{margin:0;font-family:var(--f-punch);font-weight:400;font-size:clamp(2.4rem,8vw,4.6rem);text-transform:uppercase;line-height:1;color:var(--tc);text-shadow:0 0 30px var(--tc)}
+.finwin p{margin:0;font-family:var(--f-display);font-style:italic;font-size:clamp(1.3rem,4vw,2rem);color:#fff7e0}
+.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:5}
+.confetti i{position:absolute;top:-20px;width:9px;height:14px;border-radius:2px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+@media (max-width:600px){.finboard{grid-template-columns:1fr 1fr}.finvs{display:none}}
+@media (prefers-reduced-motion:reduce){.confetti{display:none}.finlog li,.finteam.bump .fpts{animation:none}}
 /* --- Cérémonie : rideau rouge, or et tenues de soirée --- */
 .tr{background:
   radial-gradient(ellipse 60% 45% at 50% 0%,#ffe2a04d,transparent 70%),
@@ -237,6 +261,14 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
 .trwin .who small{color:#f3d58a}
 .trwin .wait{color:#fff7e0;font-style:italic}
 @media (prefers-reduced-motion:reduce){.envl{animation:none}}
+.sdintro{width:100%;max-width:900px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.sdrules{margin:0;max-width:60ch;color:#e3daf5}
+.sdcall{font-family:var(--f-punch);font-size:clamp(1.6rem,5vw,2.8rem);text-transform:uppercase;line-height:1.1}
+.sdcall small{display:block;font-family:var(--f-body);text-transform:none;font-size:1.05rem;margin-top:8px;color:#e3daf5}
+.sdbig{font-family:var(--f-punch);font-size:clamp(3rem,12vw,7rem);line-height:1;color:var(--gold);min-height:1em}
+.sdtimes{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;font-size:1.05rem}
+.sdtimes b{color:var(--tc)}
+.sdwho{font-family:var(--f-punch);font-size:clamp(1.2rem,3vw,1.8rem);text-transform:uppercase}
 /* --- Jeu des 7 différences --- */
 .sd{position:fixed;inset:0;z-index:72;overflow:auto;color:#fff;display:flex;flex-direction:column;align-items:center;gap:10px;
   background:radial-gradient(ellipse at 50% 0%,#3a2a5c,#140d26 60%,#0a0716);
@@ -607,6 +639,25 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
   <button class="btn-reveal vgo" id="tpGo" type="button" disabled>Choisis un gagnant pour chaque trophée</button>
   <div class="vmsg" id="tpMsg" aria-live="polite"></div>
 </main>
+<div class="tr fin" id="fin" hidden role="dialog" aria-modal="true" aria-label="Résultats finaux">
+  <div class="ftop"><span>Résultats finaux du week-end</span><button class="zclose" id="finClose" type="button">Fermer</button></div>
+  <section class="trintro" id="finIntro">
+    <h2 class="jdt">Les résultats <em>finaux</em></h2>
+    <p class="jdrules">Chaque épreuve gagnée rapporte 1 point à son équipe. Vérifie les vainqueurs ci-dessous avant l'annonce, tu peux les corriger.</p>
+    <div class="finrows" id="finRows"></div>
+    <div class="eact2"><button class="btn-reveal jdwinbtn" id="finGo" type="button">🏆 Annoncer les résultats</button></div>
+  </section>
+  <section class="trshow" id="finShow" hidden>
+    <div class="finboard">
+      <div class="finteam" id="finT0"><div class="fname"></div><div class="ffaces"></div><div class="fpts">0</div></div>
+      <div class="finvs">VS</div>
+      <div class="finteam" id="finT1"><div class="fname"></div><div class="ffaces"></div><div class="fpts">0</div></div>
+    </div>
+    <ol class="finlog" id="finLog"></ol>
+    <div class="finwin" id="finWin" hidden></div>
+    <div class="confetti" id="finConf" aria-hidden="true"></div>
+  </section>
+</div>
 <div class="tr" id="tr" hidden role="dialog" aria-modal="true" aria-label="Les trophées de la nuit">
   <div class="ftop"><span>Les trophées de la nuit</span><button class="zclose" id="trClose" type="button">Fermer</button></div>
   <section class="trintro" id="trIntro">
@@ -629,18 +680,26 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
   </section>
 </div>
 <div class="sd" id="sd" hidden role="dialog" aria-modal="true" aria-label="Jeu des 7 différences">
-  <div class="ftop"><span>Jeu des 7 différences</span><button class="zclose" id="sdClose" type="button">Fermer</button></div>
+  <div class="ftop"><span>Jeu des 7 différences · épreuve par équipe</span><button class="zclose" id="sdClose" type="button">Fermer</button></div>
   <div class="sdhead">
     <h2 class="jdt">Les <em>7 différences</em></h2>
-    <div class="sdstats"><span class="sdcount" id="sdCount">0 / 7</span><span class="sdtime" id="sdTime">0:00</span></div>
+    <div class="sdstats"><span class="sdwho" id="sdWho"></span><span class="sdcount" id="sdCount">0 / 7</span><span class="sdtime" id="sdTime">0:00</span></div>
   </div>
-  <p class="sdhelp">Cliquez sur une différence, sur l'une ou l'autre photo.</p>
-  <div class="sdpics">
+  <div class="sdintro" id="sdIntro">
+    <p class="sdrules">Chaque équipe cherche les 7 différences à son tour, chrono en main. Pendant ce temps, l'autre équipe se retourne et ne regarde pas l'écran ! L'équipe la plus rapide remporte l'épreuve et 1 point.</p>
+    <div class="sdcall" id="sdCall"></div>
+    <div class="sdbig" id="sdBig" aria-live="assertive"></div>
+    <div class="eact2"><button class="btn-reveal jdwinbtn" id="sdDraw" type="button" hidden>🎲 Tirer au sort l'équipe qui commence</button><button class="btn-reveal jdwinbtn" id="sdStart" type="button"></button></div>
+    <div class="sdtimes" id="sdTimes"></div>
+  </div>
+  <p class="sdhelp" id="sdHelp" hidden>Cliquez sur une différence, sur l'une ou l'autre photo.</p>
+  <div class="sdpics" id="sdPics" hidden>
     <figure><div class="sdimg" data-k="0"><img src="diff-orig.jpg" alt="Photo originale"></div><figcaption>L'originale</figcaption></figure>
     <figure><div class="sdimg" data-k="1"><img src="diff-modif.jpg" alt="Photo modifiée"></div><figcaption>Le faux</figcaption></figure>
   </div>
   <div class="sdmsg" id="sdMsg" aria-live="polite"></div>
-  <div class="eact2"><button class="btn" id="sdReveal" type="button">Révéler les différences</button><button class="btn" id="sdReset" type="button">Recommencer</button></div>
+  <div class="eact2"><button class="btn" id="sdReveal" type="button" hidden>Abandonner</button><button class="btn" id="sdReset" type="button">Recommencer l'épreuve</button></div>
+</div>
 </div>
 <div class="bt" id="bt" hidden role="dialog" aria-modal="true" aria-label="Blind test">
   <div class="ftop"><span>Blind test · 2000-2026</span><button class="zclose" id="btClose" type="button">Fermer</button></div>
@@ -774,16 +833,16 @@ const ITEMS = [
  ["📸","C'est l'heure de la photo !","On immortalise le week-end : tous devant le sapin avec son plus beau sourire !"],
  ["🎁","C'est l'heure des cadeaux !","Il est minuit : tout le monde au pied du sapin, c'est l'heure d'ouvrir les cadeaux !!"],
  ["🎧","Les filles aux platines !","Il est minuit et demi : les filles prennent le contrôle de la musique. Laissez sortir la DJ qui sommeille en vous !!"],
- ["🍊","Une clémentine","La tradition dans les souliers. Elle sent toute la pièce."],
+ ["🍰","Place au dessert !","Il est 1h : un petit creux ? C'est l'heure du dessert !"],
  ["🏆","Les trophées de la nuit","Votez pour le roi de la piste, la plus belle descente, la voix d'or du karaoké… puis place à la cérémonie !"],
  ["🌙","C'est la fin de la soirée… ou pas !","On se sert un verre, les Pères Noël vous laissent tranquilles. Bonne nuit, ou bonne fin de soirée… On se retrouve demain pour de nouvelles aventures !!!"],
  ["🥐","Viennoiseries et café !","Rien de mieux que des viennoiseries et un bon café pour commencer la journée !"],
  ["🩱","Matinée détente !","Sortez les maillots et les serviettes : départ des traîneaux à 10h15…"],
  ["🥂","Un petit blanc ?","Si tu es prêt, pourquoi ne pas prendre un petit blanc… histoire d'attendre les derniers 😉"],
  ["🍻","APÉRO !!!","Alors ce spa ? Bien ? Après ce petit moment détente bien mérité, il est temps de reprendre les choses sérieuses : APÉRO !!!"],
- ["🔍","Le jeu des 7 différences","Ouvrez l'œil : 7 différences se cachent dans cette photo des Jeux de Paris !"],
+ ["🔍","Le jeu des 7 différences","Épreuve par équipe : 7 différences à trouver au chrono. La plus rapide l'emporte !"],
  ["🪶","Une plume de renne","Personne ne savait que les rennes avaient des plumes."],
- ["🔭","Une longue-vue","Avec elle, on voit la fenêtre n°24 d'ici. Non, ne triche pas."],
+ ["🥇","Les résultats finaux !","Blind test, Just Dance, karaoké, 7 différences… quelle équipe remporte le week-end ?"],
  ["🍫","Sois gourmand !","La gourmandise n'est pas toujours un vilain défaut… Que serait Noël sans chocolats ? Ou sans bière ? À toi de choisir, mais… sois gourmand !"],
  ["🎭","Show must go on !!","Les enfants nous ont rejoints, bienvenue à eux ! Qu'ils se préparent et se déguisent : c'est à eux de prévoir le spectacle à venir !!"],
  ["⭐","Joyeux Noël à tous !","Et si on se donnait rendez-vous dans un an ?"]
@@ -873,10 +932,12 @@ const BIG = {
   7:{ jd:"karaoke", emoji:"🎤", title:"Karaoké" },
   8:{ emoji:"🥩", title:"On passe à la viande !", text:"Il est 23h, place au plat de résistance. Bon appétit !" },
   11:{ emoji:"💃", title:"Les filles aux platines !", text:"Les filles prennent le contrôle de la musique : laissez sortir la DJ qui sommeille en vous !!" },
+  12:{ emoji:"🍰", title:"Place au dessert !", text:"Un petit creux après toutes ces émotions ? Installez-vous, c'est l'heure du dessert !" },
   13:{ trophy:true, emoji:"🏆", title:"Trophées" },
   14:{ emoji:"🥂", title:"C'est la fin de la soirée… ou pas !", text:"On se sert un verre, les Pères Noël vous laissent tranquilles. Bonne nuit, ou bonne fin de soirée… On se retrouve demain pour de nouvelles aventures !!!" },
   18:{ emoji:"🍻", title:"Alors ce spa ? Bien ?", text:"Après ce petit moment détente bien mérité, il est temps de reprendre les choses sérieuses : APÉRO !!!" },
   19:{ diff:true, emoji:"🔍", title:"7 différences" },
+  21:{ final:true, emoji:"🥇", title:"Résultats finaux" },
   22:{ emoji:"🍫", title:"Sois gourmand !", text:"La gourmandise n'est pas toujours un vilain défaut… Que serait Noël sans chocolats ? Ou sans bière ? À toi de choisir, mais… sois gourmand !" },
   23:{ emoji:"🎭", title:"Bienvenue aux enfants !", text:"Ils nous ont rejoints : qu'ils se préparent et se déguisent, c'est à eux de prévoir le spectacle à venir !! Show must go on !!" },
   24:{ emoji:"🎄", title:"Joyeux Noël à tous !", text:"Et si on se donnait rendez-vous dans un an ?" },
@@ -904,6 +965,7 @@ function openZoom(n){
   if(b.bt){ openBT(); return; }
   if(b.diff){ openSD(); return; }
   if(b.trophy){ openTR(); return; }
+  if(b.final){ openFIN(); return; }
   if(b.jd){ openJD(b.jd===true?"jd":b.jd); return; }
   zball.className="zball "+([...cell.classList].find(c=>c.startsWith("c-"))||"c-gold");
   zT.textContent=b.title; zP.textContent=b.text;
@@ -1171,6 +1233,50 @@ jdRefQr.addEventListener("click",()=>{
   jdQr.hidden=false;
 });
 
+// ===== Résultats finaux : 1 point par épreuve gagnée =====
+const GAMES=[{name:"Blind test",icon:"🎧"},{name:"Just Dance",icon:"💃"},{name:"Karaoké",icon:"🎤"},{name:"7 différences",icon:"🔍"}];
+const fin=document.getElementById("fin"); let finTimers=[];
+function openFIN(){
+  fin.hidden=false; fin.scrollTop=0; finIntro.hidden=false; finShow.hidden=true;
+  if(musicBtn.classList.contains("on")) musicBtn.click(); awardsPlay();
+  finRows.innerHTML=GAMES.map((g,i)=>{const r=results.find(x=>x.name===g.name);const w=r?r.w:"";
+    return `<label class="finrow" for="finS${i}"><span>${g.icon} ${g.name}</span><select id="finS${i}"><option value=""${w===""?" selected":""}>Pas jouée</option>${TEAMS.map((t,k)=>`<option value="${k}"${w===k?" selected":""}>${t[0]}</option>`).join("")}</select></label>`;}).join("");
+}
+function closeFIN(){finTimers.forEach(clearTimeout);finTimers=[];awardsStop();finConf.innerHTML="";fin.hidden=true;}
+finClose.addEventListener("click",closeFIN);
+finGo.addEventListener("click",()=>{
+  drumCtxGet(); finTimers.forEach(clearTimeout); finTimers=[];
+  const ws=GAMES.map((g,i)=>{const v=document.getElementById("finS"+i).value;return v===""?null:+v;});
+  // les corrections faites ici mettent aussi à jour les scores autour du sapin
+  GAMES.forEach((g,i)=>{results=results.filter(r=>r.name!==g.name); if(ws[i]!==null) results.push({name:g.name,w:ws[i],test:testOne});}); saveResults(); renderScores();
+  finIntro.hidden=true; finShow.hidden=false; finLog.innerHTML=""; finWin.hidden=true; finConf.innerHTML="";
+  const pts=[0,0];
+  [finT0,finT1].forEach((el,t)=>{el.style.setProperty("--tc",TEAM_COLORS[t]);el.querySelector(".fname").textContent=TEAMS[t][0];el.querySelector(".fpts").textContent="0";
+    const ff=el.querySelector(".ffaces");ff.innerHTML="";TEAMS[t][1].forEach(n=>{const f=face(n);if(f)ff.appendChild(f);});});
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches, at=(ms,fn)=>finTimers.push(setTimeout(fn,reduce?0:ms));
+  GAMES.forEach((g,i)=>at(1200+i*2200,()=>{
+    const li=document.createElement("li"), w=ws[i];
+    if(w===null){li.innerHTML=`<span>${g.icon} ${g.name}</span><span>pas jouée</span>`;}
+    else{pts[w]++; li.style.setProperty("--tc",TEAM_COLORS[w]); li.innerHTML=`<span>${g.icon} ${g.name}</span><b>${TEAMS[w][0]} +1</b>`;
+      const el=[finT0,finT1][w]; el.querySelector(".fpts").textContent=pts[w]; el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump"); try{fBoom();}catch(_){}}
+    finLog.appendChild(li);
+  }));
+  const tEnd=1200+GAMES.length*2200;
+  at(tEnd,()=>{awardsVol(.25,600); if(!reduce) drumRoll(3);});
+  at(tEnd+3200,()=>{ if(!reduce) drumCrash(); awardsVol(.85,1500);
+    finWin.hidden=false; finWin.innerHTML="";
+    if(pts[0]===pts[1]){finWin.style.setProperty("--tc","#f3c75a");finWin.innerHTML=`<h3>Égalité !</h3><p>${pts[0]} point${pts[0]>1?"s":""} partout… tout le monde a gagné ce week-end !</p>`;return;}
+    const w=pts[0]>pts[1]?0:1; finWin.style.setProperty("--tc",TEAM_COLORS[w]);
+    const figs=document.createElement("div"); figs.className="figs"; TEAMS[w][1].forEach(n=>figs.appendChild(figureFor(n)));
+    const h=document.createElement("h3"); h.textContent=TEAMS[w][0];
+    const pp=document.createElement("p"); pp.textContent="remporte le week-end, "+pts[w]+" points à "+pts[1-w]+" !";
+    finWin.append(figs,h,pp);
+    setTimeout(()=>finWin.scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"}),150);
+    if(!reduce){const cols=["#f3c75a","#ff6077","#63adff","#fff7e0","#2bb07f"];for(let i=0;i<120;i++){const c=document.createElement("i");c.style.left=Math.random()*100+"%";c.style.background=cols[i%cols.length];
+      c.style.animationDuration=(2.5+Math.random()*2.5)+"s";c.style.animationDelay=(Math.random()*1.5)+"s";finConf.appendChild(c);}}
+  });
+});
+
 // ===== Trophées de la nuit : vote sur téléphone (#trophees), cérémonie sur le calendrier =====
 const TROPHIES=[
   {icon:"🕺",name:"Roi ou reine de la piste"},
@@ -1325,7 +1431,7 @@ function initTrPhone(){
 }
 if(location.hash==="#trophees") initTrPhone();
 
-// ===== Jeu des 7 différences (coordonnées dans la photo de 1125 x 844) =====
+// ===== Jeu des 7 différences, par équipe et au chrono (coordonnées dans la photo de 1125 x 844) =====
 const SD={w:1125,h:844,diffs:[
   {x:842,y:670,r:28,name:"Le « R » du tee-shirt noir est devenu un « P »"},
   {x:710,y:630,r:24,name:"Le petit vélo du tee-shirt a disparu"},
@@ -1335,31 +1441,66 @@ const SD={w:1125,h:844,diffs:[
   {x:16,y:607,r:30,name:"Les anneaux olympiques ont disparu du panneau"},
   {x:500,y:273,r:40,name:"L'image de l'écran géant est inversée"}
 ]};
-let sdFound=new Set(), sdT0=0, sdTimer=0, sdDone=false;
+let sdFound=new Set(), sdT0=0, sdTimer=0, sdTeam=0, sdPhase="ready", sdRes=[null,null], sdDrawn=false;
 const sd=document.getElementById("sd");
 const fmtT=ms=>{const s=Math.floor(ms/1000);return Math.floor(s/60)+":"+String(s%60).padStart(2,"0");};
 function sdMark(i,cls){document.querySelectorAll(".sdimg").forEach(box=>{const d=SD.diffs[i],m=document.createElement("div");m.className="sdmark"+(cls?" "+cls:"");
   m.style.left=d.x/SD.w*100+"%";m.style.top=d.y/SD.h*100+"%";m.style.width=(Math.max(d.r,30)*2.2)/SD.w*100+"%";m.style.height="auto";m.style.aspectRatio="1";box.appendChild(m);});}
 function sdUpdate(){sdCount.textContent=sdFound.size+" / "+SD.diffs.length;}
-function openSD(){sd.hidden=false;sd.scrollTop=0;if(!sdT0){sdT0=Date.now();}clearInterval(sdTimer);
-  if(!sdDone) sdTimer=setInterval(()=>{sdTime.textContent=fmtT(Date.now()-sdT0);},500); sdUpdate();}
-function closeSD(){clearInterval(sdTimer);sd.hidden=true;}
-function sdReset(){sdFound=new Set();sdDone=false;sdT0=Date.now();document.querySelectorAll(".sdmark").forEach(m=>m.remove());sdMsg.textContent="";sdTime.textContent="0:00";sdUpdate();openSD();}
+function sdTimesHTML(){sdTimes.innerHTML=[0,1].map(t=>{const r=sdRes[t];return `<div style="--tc:${TEAM_COLORS[t]}"><b>${TEAMS[t][0]}</b> ${r?(r.done?"⏱ "+fmtT(r.ms):"abandon ("+r.n+"/7)"):"à venir"}</div>`;}).join("");}
+function sdShowReady(){
+  sdPhase="ready"; sdIntro.hidden=false; sdPics.hidden=true; sdHelp.hidden=true; sdReveal.hidden=true; sdBig.textContent=""; sdBig.style.fontSize=""; sdMsg.textContent="";
+  const o=1-sdTeam; sdWho.textContent=TEAMS[sdTeam][0]; sdWho.style.color=TEAM_COLORS[sdTeam];
+  sdCall.innerHTML=`<span style="color:${TEAM_COLORS[sdTeam]}">${TEAMS[sdTeam][0]}</span>, à vous de jouer !<br><small><span style="color:${TEAM_COLORS[o]}">${TEAMS[o][0]}</span> : retournez-vous, interdit de regarder 🙈</small>`;
+  sdStart.textContent="\u25b6 "+TEAMS[sdTeam][0]+", c'est parti !"; sdStart.hidden=false; sdDraw.hidden=true; sdTime.textContent="0:00"; sdUpdate(); sdTimesHTML();
+  if(!sdDrawn){ sdWho.textContent=""; sdCall.innerHTML="Tirage au sort<br><small>Quelle \u00e9quipe cherche les diff\u00e9rences en premier ?</small>"; sdStart.hidden=true; sdDraw.hidden=false; }
+}
+sdDraw.addEventListener("click",()=>{
+  drumCtxGet(); sdDraw.hidden=true; const pick=Math.random()<.5?0:1, reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let i=0, delay=70; const steps=reduce?1:16+pick+(Math.random()<.5?0:2);
+  const spin=()=>{ const t=i%2; sdBig.style.fontSize="clamp(2.4rem,8vw,4.6rem)"; sdBig.innerHTML=`<span style="color:${TEAM_COLORS[t]}">${TEAMS[t][0]}</span>`;
+    try{ if(!reduce) fBoom(); }catch(_){}
+    i++; if(i<steps){ delay*=1.13; setTimeout(spin,delay); return; }
+    sdBig.innerHTML=`<span style="color:${TEAM_COLORS[pick]}">${TEAMS[pick][0]}</span> commence !`; try{fBell(2);}catch(_){}
+    sdDrawn=true; sdTeam=pick; setTimeout(sdShowReady,2200); };
+  spin();
+});
+function sdShowEnd(){
+  sdPhase="end"; clearInterval(sdTimer); sdIntro.hidden=false; sdPics.hidden=true; sdHelp.hidden=true; sdReveal.hidden=true; sdStart.hidden=true; sdWho.textContent="";
+  sdCall.textContent="Résultat de l'épreuve"; sdTimesHTML(); sdBig.style.fontSize="clamp(2rem,6vw,3.4rem)"; sdCount.textContent="";
+  const [a,b]=sdRes, score=r=>r.done?r.ms:1e12-r.n*1e9; let w=null;
+  if(score(a)<score(b)) w=0; else if(score(b)<score(a)) w=1;
+  if(w===null){sdBig.textContent="Égalité parfaite !";return;}
+  sdBig.innerHTML=`<span style="color:${TEAM_COLORS[w]}">${TEAMS[w][0]}</span> remporte l'épreuve !`;
+  try{drumCrash();}catch(_){} recordResult("7 différences",w);
+}
+function openSD(){sd.hidden=false;sd.scrollTop=0; if(sdPhase==="play"){return;} if(sdPhase==="end") sdShowEnd(); else sdShowReady();}
+function closeSD(){sd.hidden=true;}
+function sdClear(){sdFound=new Set();document.querySelectorAll(".sdmark").forEach(m=>m.remove());sdUpdate();}
+sdStart.addEventListener("click",()=>{
+  drumCtxGet(); sdStart.hidden=true; sdClear(); let k=3;
+  const tick=()=>{ if(k>0){sdBig.textContent=k;try{fBell(1);}catch(_){}k--;setTimeout(tick,900);return;}
+    sdBig.textContent="Partez !"; sdIntro.hidden=true; sdPics.hidden=false; sdHelp.hidden=false; sdReveal.hidden=false; sdPhase="play";
+    sdT0=Date.now(); clearInterval(sdTimer); sdTimer=setInterval(()=>{sdTime.textContent=fmtT(Date.now()-sdT0);},250); sd.scrollTop=0; };
+  tick();
+});
+function sdFinishTeam(done){
+  clearInterval(sdTimer); const ms=Date.now()-sdT0; sdRes[sdTeam]={done,ms,n:sdFound.size}; sdTime.textContent=fmtT(ms);
+  sdMsg.textContent=done?"🎉 "+TEAMS[sdTeam][0]+" : les 7 différences en "+fmtT(ms)+" !":TEAMS[sdTeam][0]+" abandonne avec "+sdFound.size+" / 7.";
+  sdPhase="pause"; sdReveal.hidden=true;
+  setTimeout(()=>{ if(sdRes[1-sdTeam]===null){sdTeam=1-sdTeam;sdClear();sdShowReady();} else sdShowEnd(); },2800);
+}
 sd.addEventListener("click",e=>{
-  const box=e.target.closest(".sdimg"); if(!box||sdDone) return;
+  const box=e.target.closest(".sdimg"); if(!box||sdPhase!=="play") return;
   const r=box.getBoundingClientRect(), x=(e.clientX-r.left)/r.width*SD.w, y=(e.clientY-r.top)/r.height*SD.h;
-  // la plus petite zone touchée gagne (le texte avant le tee-shirt)
   const hits=SD.diffs.map((d,i)=>({i,d,dist:Math.hypot(x-d.x,y-d.y)})).filter(o=>o.dist<=o.d.r).sort((a,b)=>a.d.r-b.d.r);
   const hit=hits.find(o=>!sdFound.has(o.i));
-  if(hit){ sdFound.add(hit.i); sdMark(hit.i); sdMsg.textContent="✔ "+hit.d.name; try{fBell(1);}catch(_){}
-    sdUpdate();
-    if(sdFound.size===SD.diffs.length){sdDone=true;clearInterval(sdTimer);const t=fmtT(Date.now()-sdT0);sdTime.textContent=t;
-      sdMsg.textContent="🎉 Bravo ! Les 7 différences trouvées en "+t+" !";try{drumCrash();}catch(_){}}
-  } else if(!hits.length){ const m=document.createElement("div");m.className="sdmiss";m.textContent="✖";m.style.left=(x/SD.w*100)+"%";m.style.top=(y/SD.h*100)+"%";box.appendChild(m);setTimeout(()=>m.remove(),700); }
+  if(hit){ sdFound.add(hit.i); sdMark(hit.i); sdMsg.textContent="✔ "+hit.d.name; try{fBell(1);}catch(_){} sdUpdate();
+    if(sdFound.size===SD.diffs.length){ try{drumCrash();}catch(_){} sdFinishTeam(true); } }
+  else if(!hits.length){ const m=document.createElement("div");m.className="sdmiss";m.textContent="✖";m.style.left=(x/SD.w*100)+"%";m.style.top=(y/SD.h*100)+"%";box.appendChild(m);setTimeout(()=>m.remove(),700); }
 });
-sdReveal.addEventListener("click",()=>{SD.diffs.forEach((d,i)=>{if(!sdFound.has(i)){sdFound.add(i);sdMark(i,"rev");}});sdDone=true;clearInterval(sdTimer);sdUpdate();
-  sdMsg.textContent="Les différences en doré n'avaient pas été trouvées.";});
-document.getElementById("sdReset").addEventListener("click",sdReset);
+sdReveal.addEventListener("click",()=>{ if(sdPhase==="play") sdFinishTeam(false); });
+sdReset.addEventListener("click",()=>{clearInterval(sdTimer);sdRes=[null,null];sdTeam=0;sdDrawn=false;sdClear();results=results.filter(r=>r.name!=="7 différences");saveResults();renderScores();sdShowReady();});
 sdClose.addEventListener("click",closeSD);
 
 // ===== Blind test : extraits joués sur le calendrier, réponses sur les téléphones des équipes =====
@@ -1661,7 +1802,7 @@ eReveal.addEventListener("click",()=>{drumCtxGet();reveal();});
 eReplay.addEventListener("click",()=>{drumCtxGet();reveal();});
 eEdit.addEventListener("click",()=>{eTimers.forEach(clearTimeout);eTimers=[];stage("entry");});
 zoom.addEventListener("click",e=>{if(e.target===zoom) closeZoom();});
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){ if(!tr.hidden) closeTR(); else if(!sd.hidden) closeSD(); else if(!bt.hidden) closeBT(); else if(!jd.hidden) closeJD(); else if(!fight.hidden) closeFight(); else if(!elec.hidden) closeElec(); else closeZoom(); }});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){ if(!fin.hidden) closeFIN(); else if(!tr.hidden) closeTR(); else if(!sd.hidden) closeSD(); else if(!bt.hidden) closeBT(); else if(!jd.hidden) closeJD(); else if(!fight.hidden) closeFight(); else if(!elec.hidden) closeElec(); else closeZoom(); }});
 
 function tick(){
   const now=Date.now();
