@@ -7,7 +7,7 @@
 <style>[hidden]{display:none!important}html,body{margin:0}img{max-width:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
 <title>Calendrier des demi-heures</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600&family=Righteous&family=Rozha+One&family=Karla:wght@400;600;700&family=DM+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Great+Vibes&family=Oswald:wght@500;600&family=Righteous&family=Rozha+One&family=Karla:wght@400;600;700&family=DM+Mono:wght@500&display=swap">
 <style>
 /* Mise en page : un sapin de Noël sous la neige. L'étoile au sommet, les boules sur les étages de branches, les cadeaux au pied. Chaque décoration est une fenêtre. */
 :root{
@@ -28,14 +28,29 @@ body{background:var(--night);color:var(--snow);font-family:var(--f-body);font-si
 .tier.t5{z-index:0}
 canvas#snow{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.6}
 .wrap{position:relative;z-index:1;max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
-header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px}
-h1{font-family:var(--f-display);font-weight:400;font-size:clamp(2rem,6vw,3.4rem);line-height:1;margin:0;text-wrap:balance;color:var(--snow)}
-h1 em{font-style:normal;color:var(--gold)}
-.sub{color:var(--muted);margin:6px 0 0;max-width:46ch}
-.status{display:flex;flex-direction:column;align-items:flex-end;gap:2px;text-align:right}
-.status .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
-.status .cd{font-family:var(--f-mono);font-size:1.9rem;color:var(--gold);font-variant-numeric:tabular-nums;line-height:1.1}
-.status .cnt{font-size:.85rem;color:var(--muted)}
+header{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.hero{display:flex;flex-direction:column;align-items:center;gap:6px}
+.eyebrow{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+h1{margin:0;display:flex;flex-direction:column;align-items:center;line-height:1;text-wrap:balance}
+h1 .jn{font-family:"Great Vibes",var(--f-display),cursive;font-weight:400;font-size:clamp(3.4rem,13vw,7rem);line-height:1.05;padding:0 .15em;
+  background:linear-gradient(100deg,#f7e3a1,#e0a93a 30%,#fff3c4 48%,#d49a2a 65%,#f7e3a1);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 3px 0 #0007) drop-shadow(0 0 24px #e8b54a44)}
+h1 .team{font-family:var(--f-punch);font-size:clamp(1.4rem,4.6vw,2.4rem);letter-spacing:.22em;text-transform:uppercase;color:var(--snow);margin-top:2px}
+h1 .team em{font-style:normal;color:#ff6b7f}
+.sub{color:var(--muted);margin:6px auto 0;max-width:52ch}
+.status{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 26px;border-radius:999px;background:#ffffff0d;border:1px solid #e8b54a55;box-shadow:inset 0 1px 0 #ffffff1a,0 10px 30px #0006;backdrop-filter:blur(4px)}
+.status .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
+.status .cd{font-family:var(--f-mono);font-size:clamp(1.5rem,5vw,2.1rem);color:var(--gold);font-variant-numeric:tabular-nums;line-height:1.1;text-shadow:0 0 14px #e8b54a66}
+.status .cnt{font-size:.82rem;color:var(--muted)}
+.garland{height:46px;margin:-6px calc(-1 * max(16px,env(safe-area-inset-left,0px))) -12px;position:relative;overflow:hidden}
+.garland::before{content:"";position:absolute;left:-2%;right:-2%;top:4px;height:30px;border-bottom:2px solid #1d3a2c;border-radius:0 0 50% 50%/0 0 100% 100%}
+.garland::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(circle 6px at 3% 62%,#ff4b5c 95%,transparent),radial-gradient(circle 6px at 9% 76%,#ffd34d 95%,transparent),radial-gradient(circle 6px at 15% 86%,#4bd1ff 95%,transparent),radial-gradient(circle 6px at 21% 92%,#7dff8a 95%,transparent),
+  radial-gradient(circle 6px at 27% 96%,#ff4b5c 95%,transparent),radial-gradient(circle 6px at 33% 98%,#ffd34d 95%,transparent),radial-gradient(circle 6px at 39% 99%,#4bd1ff 95%,transparent),radial-gradient(circle 6px at 45% 100%,#7dff8a 95%,transparent),
+  radial-gradient(circle 6px at 51% 100%,#ff4b5c 95%,transparent),radial-gradient(circle 6px at 57% 99%,#ffd34d 95%,transparent),radial-gradient(circle 6px at 63% 98%,#4bd1ff 95%,transparent),radial-gradient(circle 6px at 69% 96%,#7dff8a 95%,transparent),
+  radial-gradient(circle 6px at 75% 92%,#ff4b5c 95%,transparent),radial-gradient(circle 6px at 81% 86%,#ffd34d 95%,transparent),radial-gradient(circle 6px at 87% 76%,#4bd1ff 95%,transparent),radial-gradient(circle 6px at 93% 62%,#7dff8a 95%,transparent),radial-gradient(circle 6px at 98% 48%,#ff4b5c 95%,transparent);
+  background-size:100% 76%;background-repeat:no-repeat;filter:drop-shadow(0 0 6px #ffffffaa);animation:garl 1.6s steps(2) infinite}
+@keyframes garl{50%{filter:drop-shadow(0 0 2px #fff6) brightness(.65)}}
 /* --- Le sapin --- */
 .board{display:flex;flex-direction:column;align-items:center;padding-block:8px 0;position:relative}
 .tier{position:relative;display:flex;justify-content:center;align-items:flex-end;gap:calc(var(--u) * .2);
@@ -102,7 +117,7 @@ h1 em{font-style:normal;color:var(--gold)}
 @keyframes shake{25%{transform:translateX(-4px) rotate(-4deg)}75%{transform:translateX(4px) rotate(4deg)}}
 .tip{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--ink);color:var(--snow);font-size:.75rem;
   padding:5px 8px;border-radius:3px;white-space:nowrap;z-index:5;pointer-events:none}
-.reveal{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;padding:16px 18px;border-radius:6px;
+.reveal{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;padding:18px 22px;border-radius:14px;border-left:8px solid var(--berry);box-shadow:0 14px 34px #0007,inset 0 0 0 1px #ffffff55;
   background:var(--paper);color:var(--ink);min-height:96px}
 .reveal .big{font-size:3.4rem;line-height:1}
 .reveal h2{font-family:var(--f-display);font-weight:400;margin:0;font-size:1.5rem;line-height:1.1}
@@ -110,7 +125,7 @@ h1 em{font-style:normal;color:var(--gold)}
 .reveal .k{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:#7a6548}
 footer{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;color:var(--muted);font-size:.85rem}
 footer .btns{display:flex;gap:8px;flex-wrap:wrap}
-.btn{font:inherit;font-weight:600;border-radius:4px;padding:8px 14px;cursor:pointer;border:1px solid #3b6f63;background:transparent;color:var(--snow)}
+.btn{font:inherit;font-weight:600;border-radius:999px;padding:9px 18px;cursor:pointer;border:1px solid #3b6f63;background:transparent;color:var(--snow)}
 .btn:hover{border-color:var(--gold);color:var(--gold)}
 .btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .confirm{display:flex;gap:8px;align-items:center}
@@ -125,6 +140,12 @@ footer .btns{display:flex;gap:8px;flex-wrap:wrap}
 @keyframes eq{50%{height:14px}}
 body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
 .music.alarm{bottom:calc(68px + env(safe-area-inset-bottom,0px))}
+.music.fsb{bottom:calc(120px + env(safe-area-inset-bottom,0px))}
+:fullscreen body{overflow-y:auto}
+:fullscreen footer{display:none}
+:fullscreen .music{opacity:.25;transition:opacity .3s}
+:fullscreen .music:hover,:fullscreen .music:focus-visible,:fullscreen .music.ringing{opacity:1}
+:fullscreen .wrap{padding-top:10px}
 .music.alarm .bell{font-size:1rem;line-height:1}
 .music.alarm.armed{background:var(--gold)}
 .music.alarm.ringing{animation:ring .25s ease-in-out 8}
@@ -733,6 +754,11 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
 .has-teams .zqr{width:auto;aspect-ratio:auto;padding:0}
 .has-teams .zqr.emo{font-size:min(11vw,8vh,64px)}
 .has-teams .zface{gap:2.5%}
+.zvote{display:flex;flex-direction:column;align-items:center;gap:6px}
+.zvote span{font-family:var(--f-mono);font-size:clamp(.7rem,2.4vw,.9rem);color:#7a6548}
+.zvote .btn-reveal{font-size:clamp(.8rem,2.6vw,1rem);padding:8px 16px}
+.has-vote .zqr{width:46%}
+.has-vote .zface{gap:2%}
 .zlinks{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
 .zlink{font-weight:700;font-size:clamp(.75rem,2.6vw,.95rem);padding:6px 12px;border-radius:999px;background:var(--berry);color:#fff;text-decoration:none}
 .zlink:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
@@ -744,13 +770,14 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
   padding:8px 16px;border-radius:999px;border:0;background:var(--paper);color:var(--ink);cursor:pointer}
 .zclose:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 @media (max-width:620px){.status{align-items:flex-start;text-align:left}.door .when{display:none}}
-@media (prefers-reduced-motion:reduce){.door{transition:none}.door.ready,.door.shake{animation:none}canvas#snow{display:none}}
+@media (prefers-reduced-motion:reduce){.garland::after{animation:none}.door{transition:none}.door.ready,.door.shake{animation:none}canvas#snow{display:none}}
 </style>
 
 </head>
 <body>
 <canvas id="snow" aria-hidden="true"></canvas>
 <button class="music alarm" id="alarmBtn" type="button" aria-pressed="false"><span class="bell" aria-hidden="true">⏰</span><span id="alarmLbl">Activer le réveil</span></button>
+<button class="music fsb" id="fsBtn" type="button" aria-pressed="false" hidden><span aria-hidden="true">⛶</span><span id="fsLbl">Plein écran</span></button>
 <button class="music" id="musicBtn" type="button" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span id="musicLbl">Mettre la musique</span></button>
 <div class="zoom" id="zoom" hidden role="dialog" aria-modal="true" aria-labelledby="zT">
   <button class="zclose" id="zClose" type="button">Fermer</button>
@@ -761,6 +788,7 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
       <p id="zP"></p>
       <div class="zteams" id="zTeams" hidden></div>
       <div class="zlinks" id="zLinks" hidden></div>
+      <div class="zvote" id="zVote" hidden><span id="zVoteN"></span><button class="btn-reveal" id="zVoteGo" type="button">🏆 Révéler le vainqueur</button></div>
     </div>
   </div>
 </div>
@@ -973,10 +1001,10 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
   </div>
 </div>
 <div class="wrap">
+  <div class="garland" aria-hidden="true"></div>
   <header>
-    <div>
-      <h1>L'Avent <em>à la demi-heure</em></h1>
-      <p class="sub">24 décorations sur le sapin, une nouvelle à ouvrir toutes les 30 minutes. L'étoile du sommet se gagne en dernier.</p>
+    <div class="hero">
+      <h1><span class="jn">Joyeux Noël</span><span class="team">IFEPSA <em>Vendéen</em></span></h1>
     </div>
     <div class="status" aria-live="polite">
       <span class="lbl" id="cdLbl">Prochaine fenêtre dans</span>
@@ -985,7 +1013,7 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
     </div>
   </header>
 
-  <section class="reveal" id="reveal" aria-live="polite">
+  <section class="reveal" id="reveal" aria-live="polite" hidden>
     <div class="big" id="rvObj">🕯️</div>
     <div>
       <div class="k" id="rvK">Comment ça marche</div>
@@ -997,8 +1025,8 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
   <div class="arena"><aside class="score sa" id="scoreA" hidden aria-live="polite"><div class="stag" id="scoreALead"></div><div class="sname"></div><div class="spts"><span class="snum">0</span><span class="sunit">point</span></div><div class="smem"></div><ul class="swins"></ul></aside><div class="board" id="board"></div><aside class="score sb" id="scoreB" hidden aria-live="polite"><div class="stag" id="scoreBLead"></div><div class="sname"></div><div class="spts"><span class="snum">0</span><span class="sunit">point</span></div><div class="smem"></div><ul class="swins"></ul></aside></div>
 
   <footer>
-    <span id="startInfo"></span>
-    <div class="btns"><button class="btn btn-gold" id="voteBtn" type="button">🗳️ Résultats du vote</button><button class="btn" id="testBtn" type="button">Faire un essai</button></div>
+    <span id="startInfo" hidden></span>
+    <div class="btns"><button class="btn btn-gold" id="voteBtn" type="button" hidden>🗳️ Résultats du vote</button><button class="btn" id="testBtn" type="button">Faire un essai</button></div>
     <div class="btns" id="btns">
       <button class="btn" id="resetBtn" type="button">Refermer les fenêtres</button>
     </div>
@@ -1110,7 +1138,7 @@ function peopleInto(el,names){el.innerHTML="";names.forEach(n=>el.appendChild(pe
 const TEAMS = [["Équipe A",["Guigui","Charlotte","Diane"]],["Équipe B",["Élodie","Arthur","Pauline"]]];
 const BIG = {
   2:{ fight:true, title:"Les équipes de la soirée", text:"Elles s'affrontent toute la soirée. Que la meilleure gagne !", teams:TEAMS },
-  1:{ qr:null, title:"Qui a le plus beau costume ?", text:"Scannez-moi avec votre téléphone pour voter." },
+  1:{ qr:null, vote:true, title:"Qui a le plus beau costume ?", text:"Scannez-moi avec votre téléphone pour voter." },
   3:{ bt:true, emoji:"🎧", title:"Blind test" },
   4:{ emoji:"🍸", title:"On ne vous dérange pas plus…", text:"Mais n'oubliez pas de prendre l'apéro…" },
   5:{ jd:true, emoji:"💃", title:"C'est l'heure du Just Dance !", text:"Formez vos équipes, la compétition commence !",
@@ -1157,7 +1185,7 @@ function openZoom(n){
   if(b.dj){ openDJ(); return; }
   if(b.jd){ openJD(b.jd===true?"jd":b.jd); return; }
   zball.className="zball "+([...cell.classList].find(c=>c.startsWith("c-"))||"c-gold");
-  zT.textContent=b.title; zP.textContent=b.text;
+  zT.textContent=b.title; zP.textContent=b.text; zVoteShow(!!b.vote);
   zQr.hidden=!b.qr && !b.emoji && n!==1;
   zTeams.hidden=!b.teams; zTeams.innerHTML="";
   (b.teams||[]).forEach(([tn,ms])=>{const d=document.createElement("div");d.className="zteam";const h=document.createElement("b");h.textContent=tn;d.appendChild(h);
@@ -1179,6 +1207,14 @@ function openZoom(n){
   }
   zoom.classList.add("show"); zClose.focus({preventScroll:true});
 }
+// Boule 1 : compteur de votes et révélation du vainqueur directement depuis la boule
+let zVoteTimer=0;
+const hasDB=()=>typeof DB_URL!=="undefined"&&!!DB_URL;
+async function zVoteCount(){ if(!hasDB()||typeof fetchVotes!=="function"){zVoteN.textContent="";return;}
+  try{const c=await fetchVotes();const n=Object.values(c).reduce((a,b)=>a+b,0);zVoteN.textContent=n+" vote"+(n>1?"s":"")+" reçu"+(n>1?"s":"");}catch(e){zVoteN.textContent="";} }
+function zVoteShow(on){ zVote.hidden=!on; zball.classList.toggle("has-vote",on); clearInterval(zVoteTimer); if(on){zVoteCount(); zVoteTimer=setInterval(()=>{if(!zoom.hidden)zVoteCount();},3000);} }
+zVoteGo.addEventListener("click",()=>{ drumCtxGet(); clearInterval(zVoteTimer); closeZoom();
+  setTimeout(()=>{ openElec(); if(hasDB()) reveal(); },650); });
 function closeZoom(){
   if(zoom.hidden) return;
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1679,7 +1715,7 @@ function trReveal(){
 }
 // téléphone : #trophees
 function initTrPhone(){
-  document.querySelector(".wrap").hidden=true; alarmBtn.hidden=true; musicBtn.hidden=true; trPhone.hidden=false;
+  document.querySelector(".wrap").hidden=true; alarmBtn.hidden=true; musicBtn.hidden=true; fsBtn.hidden=true; trPhone.hidden=false;
   document.title="Les trophées de la nuit";
   if(!TR_DB){tpIntro.textContent="Le vote n'est pas encore ouvert.";tpGo.hidden=true;return;}
   const key="avent30-trophees-"+ELECTION, done=()=>{tpCats.hidden=true;tpGo.hidden=true;tpIntro.hidden=true;tpMsg.textContent="✔ Merci ! Tes votes sont enregistrés. Rendez-vous devant le sapin pour la cérémonie !";};
@@ -1963,7 +1999,7 @@ function btFinish(){
 }
 // --- téléphone d'une équipe (#bt-a ou #bt-b)
 function initBtPhone(t){
-  document.querySelector(".wrap").hidden=true; alarmBtn.hidden=true; musicBtn.hidden=true; btPhone.hidden=false;
+  document.querySelector(".wrap").hidden=true; alarmBtn.hidden=true; musicBtn.hidden=true; fsBtn.hidden=true; btPhone.hidden=false;
   document.title="Blind test · "+TEAMS[t][0];
   bpTeam.textContent="Blind test · "+TEAMS[t][0]; bpTeam.style.color=TEAM_COLORS[t];
   TEAMS[t][1].forEach(n=>{const f=face(n);if(f)bpFaces.appendChild(f);});
@@ -2090,6 +2126,7 @@ function tick(){
   }
   prevAvail=avail;
   testBtn.hidden = now>=start && !testOne;
+  voteBtn.hidden = !testOne; // réglages du vote visibles seulement en mode essai
 }
 let prevAvail=null;
 // Réveil : un Père Noël synthétisé qui fait « Ho ho ho » + grelots
@@ -2197,7 +2234,7 @@ testBtn.addEventListener("click",()=>{
 
 // Page de vote : ouverte par le QR code (adresse se terminant par #vote)
 function initVote(){
-  document.querySelector(".wrap").hidden=true; alarmBtn.hidden=true; musicBtn.hidden=true; vpage.hidden=false;
+  document.querySelector(".wrap").hidden=true; alarmBtn.hidden=true; musicBtn.hidden=true; fsBtn.hidden=true; vpage.hidden=false;
   document.title="Le grand vote des costumes";
   const key="avent30-voted-"+ELECTION; let choice=null;
   const done=n=>{vGrid.hidden=true;vGo.hidden=true;vIntro.hidden=true;
@@ -2219,7 +2256,7 @@ function initVote(){
 }
 // Espace arbitre : ouvert depuis un téléphone (adresse se terminant par #arbitre)
 async function initRef(){
-  document.querySelector(".wrap").hidden=true; alarmBtn.hidden=true; musicBtn.hidden=true; rpage.hidden=false;
+  document.querySelector(".wrap").hidden=true; alarmBtn.hidden=true; musicBtn.hidden=true; fsBtn.hidden=true; rpage.hidden=false;
   document.title="Arbitre · Just Dance";
   if(!REF_BASE){rIntro.textContent="La base de données n'est pas configurée.";rGo.hidden=true;return;}
   let choice=null, rKey="jd";
@@ -2303,6 +2340,25 @@ document.getElementById("resetBtn").addEventListener("click",function ask(){
  (function loop(){x.clearRect(0,0,W,H);x.fillStyle="#f4efe6";
   f.forEach(p=>{p.y+=p.v;p.d+=.01;p.x+=Math.sin(p.d)*.3;if(p.y>H){p.y=-4;p.x=Math.random()*W}x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill();});
   requestAnimationFrame(loop);})();})();
+
+/* ---- plein écran ---- */
+(function(){
+  const btn=document.getElementById("fsBtn"), lbl=document.getElementById("fsLbl"), el=document.documentElement;
+  const req=el.requestFullscreen||el.webkitRequestFullscreen;
+  if(!req) return;
+  if(!document.querySelector(".wrap").hidden) btn.hidden=false;
+  const cur=()=>document.fullscreenElement||document.webkitFullscreenElement;
+  const wrap=document.querySelector(".wrap");
+  const fit=()=>{wrap.style.zoom=""; if(!cur()) return; const h=wrap.scrollHeight+24; const z=Math.min(1,innerHeight/h); if(z<1) wrap.style.zoom=z.toFixed(3);};
+  const upd=()=>{const on=!!cur(); btn.setAttribute("aria-pressed",on); lbl.textContent=on?"Quitter le plein écran":"Plein écran"; setTimeout(fit,120);};
+  addEventListener("resize",()=>{if(cur()) fit();});
+  btn.addEventListener("click",()=>{
+    if(cur()){(document.exitFullscreen||document.webkitExitFullscreen).call(document);return;}
+    try{const r=req.call(el); if(r&&r.catch) r.catch(()=>{lbl.textContent="Plein écran bloqué ici"; setTimeout(upd,2500);});}
+    catch(e){lbl.textContent="Plein écran bloqué ici"; setTimeout(upd,2500);}
+  });
+  document.addEventListener("fullscreenchange",upd); document.addEventListener("webkitfullscreenchange",upd);
+})();
 </script>
 </body>
 </html>
