@@ -234,6 +234,58 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
 .tpp:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){.trwin .who{animation:none}}
 /* --- Les filles aux platines : cabine de DJ --- */
+/* ===== Jeu des cadeaux (boule 10) ===== */
+.gj{position:fixed;inset:0;z-index:72;overflow:auto;color:#fff;display:flex;flex-direction:column;align-items:center;gap:14px;
+  background:radial-gradient(ellipse at 50% 0%,#1f5a3f,#0c2a1d 55%,#06140d);
+  padding:calc(12px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.gj::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.07;
+  background:repeating-linear-gradient(45deg,#fff 0 14px,transparent 14px 46px)}
+.gj>*{position:relative;z-index:1}
+.gj .ftop{color:#cfe8d6}
+.gjt{margin:4px 0 0;font-family:"Great Vibes",var(--f-display),cursive;font-weight:400;font-size:clamp(2.8rem,9vw,5rem);line-height:1;text-align:center;
+  background:linear-gradient(100deg,#f7e3a1,#e0a93a 30%,#fff3c4 48%,#d49a2a 65%,#f7e3a1);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 3px 0 #0008)}
+.gjt em{font-style:normal}
+.gjsub{margin:0;color:#cfe8d6;text-align:center;max-width:52ch}
+.gjorder{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;min-height:10px}
+.gjorder .gjp{display:flex;align-items:center;gap:6px;padding:4px 10px 4px 4px;border-radius:999px;background:#ffffff12;border:1px solid #ffffff22;font-size:.85rem;opacity:.6;transition:all .3s}
+.gjorder .gjp .face{width:28px;height:28px;border-radius:50%;object-fit:cover}
+.gjorder .gjp.now{opacity:1;background:var(--gold);color:#2a1d05;border-color:var(--gold);transform:scale(1.08);box-shadow:0 0 18px #e8b54a88;font-weight:700}
+.gjturn{display:flex;align-items:center;gap:14px;font-family:var(--f-punch);text-transform:uppercase;letter-spacing:.06em;font-size:clamp(1.4rem,4.5vw,2.2rem);min-height:76px}
+.gjturn .face{width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);box-shadow:0 0 0 4px #c8324a,0 8px 20px #0008}
+.gjturn em{font-style:normal;color:var(--gold)}
+.gjini{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#c8324a,#7a1c2c);color:#fff;font-family:var(--f-display);font-weight:400;text-transform:uppercase}
+.gjorder .gjini{font-size:.9rem}
+.gjturn .gjini{font-size:2.2rem}
+.gjturn.spin .face{animation:gjpop .12s ease-out}
+@keyframes gjpop{from{transform:scale(.8)}}
+.gjcard{width:min(520px,92vw);aspect-ratio:3/2;perspective:1400px;cursor:pointer}
+.gjinner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.3,1.4,.5,1)}
+.gjcard.flip .gjinner{transform:rotateY(180deg)}
+.gjcard.shake .gjinner{animation:gjshake .9s ease-in-out}
+@keyframes gjshake{0%,100%{transform:rotate(0)}15%{transform:rotate(-3deg) scale(1.02)}30%{transform:rotate(3deg)}45%{transform:rotate(-3deg) scale(1.04)}60%{transform:rotate(3deg)}75%{transform:rotate(-2deg) scale(1.05)}}
+.gjback,.gjfront{position:absolute;inset:0;border-radius:18px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 18px 40px #000a}
+.gjback{background:
+  linear-gradient(90deg,transparent calc(50% - 16px),#e8b54a calc(50% - 16px) calc(50% + 16px),transparent calc(50% + 16px)),
+  linear-gradient(0deg,transparent calc(50% - 16px),#e8b54a calc(50% - 16px) calc(50% + 16px),transparent calc(50% + 16px)),
+  repeating-linear-gradient(45deg,#c8324a 0 22px,#b02a40 22px 44px);border:4px solid #f7e3a1}
+.gjback span{font-size:clamp(3rem,10vw,5rem);filter:drop-shadow(0 4px 6px #0008);position:relative;z-index:1}
+.gjfront{transform:rotateY(180deg);background:var(--paper);color:var(--ink);border:4px solid var(--gold);flex-direction:column;padding:22px 26px;text-align:center}
+.gjfront::before{content:"";position:absolute;inset:8px;border:1.5px dashed #c8324a66;border-radius:12px;pointer-events:none}
+.gjnum{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#7a6548;margin-bottom:8px}
+.gjfront p{margin:0;font-family:var(--f-display);font-size:clamp(1.3rem,4.2vw,2.1rem);line-height:1.15;text-wrap:balance}
+.gjbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.gjgo{font:inherit;font-family:var(--f-punch);text-transform:uppercase;letter-spacing:.08em;font-size:1.2rem;padding:14px 30px;border-radius:999px;border:0;cursor:pointer;
+  background:linear-gradient(90deg,#c8932b,#f7e3a1,#c8932b);color:#2a1d05;box-shadow:0 0 22px #e8c46a66,0 6px 0 #8a6418}
+.gjgo:active{transform:translateY(3px);box-shadow:0 0 22px #e8c46a66,0 3px 0 #8a6418}
+.gjgo[disabled]{opacity:.5;cursor:default}
+.gjfoot{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center;color:#cfe8d6;font-size:.85rem}
+.gjsmall{font:inherit;font-size:.8rem;background:transparent;color:#cfe8d6;border:1px solid #ffffff33;border-radius:999px;padding:6px 14px;cursor:pointer}
+.gjfin{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:10px 0}
+.gjfin .big{font-size:clamp(4rem,14vw,7rem);animation:gjbounce 1s ease-in-out infinite alternate}
+@keyframes gjbounce{to{transform:translateY(-12px) rotate(6deg)}}
+.gjfin h3{margin:0;font-family:var(--f-punch);font-weight:400;text-transform:uppercase;font-size:clamp(2rem,7vw,3.6rem);line-height:1;color:var(--gold)}
+.gjfin p{margin:0;color:#cfe8d6;font-size:1.1rem}
+@media (prefers-reduced-motion:reduce){.gjinner{transition:none}.gjcard.shake .gjinner,.gjfin .big{animation:none}}
 .dj{position:fixed;inset:0;z-index:72;overflow:auto;color:#fff;display:flex;flex-direction:column;align-items:center;gap:14px;
   background:radial-gradient(ellipse 60% 30% at 50% 108%,#ff2bd666,transparent 70%),radial-gradient(ellipse at 50% -10%,#3b0f6e,#140628 55%,#06020c);
   padding:calc(12px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
@@ -849,6 +901,17 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
     <div class="confetti" id="finConf" aria-hidden="true"></div>
   </section>
 </div>
+<div class="gj" id="gj" hidden role="dialog" aria-modal="true" aria-label="Le jeu des cadeaux">
+  <div class="ftop"><span>Minuit · Ouverture des cadeaux</span><button class="zclose" id="gjClose" type="button">Fermer</button></div>
+  <h2 class="gjt">Le jeu des <em>cadeaux</em></h2>
+  <p class="gjsub" id="gjSub">Chacun garde son cadeau emballé sur les genoux. À tour de rôle, on tire une carte et on obéit !</p>
+  <div class="gjorder" id="gjOrder"></div>
+  <div class="gjturn" id="gjTurn" aria-live="polite"></div>
+  <div class="gjcard" id="gjCard"><div class="gjinner"><div class="gjback"><span aria-hidden="true">🎁</span></div><div class="gjfront"><span class="gjnum" id="gjNum"></span><p id="gjText"></p></div></div></div>
+  <div class="gjfin" id="gjFin" hidden><div class="big" aria-hidden="true">🎁</div><h3>Fin du jeu !</h3><p>Tout le monde déballe le cadeau qu'il a entre les mains. Joyeux Noël !</p></div>
+  <div class="gjbtns"><button class="gjgo" id="gjGo" type="button">Qui commence ?</button></div>
+  <div class="gjfoot"><span id="gjLeft"></span><button class="gjsmall" id="gjEnd" type="button">Terminer le jeu</button><button class="gjsmall" id="gjRestart" type="button">Recommencer</button></div>
+</div>
 <div class="dj" id="dj" hidden role="dialog" aria-modal="true" aria-label="Les filles aux platines">
   <div class="ftop"><span>Minuit et demi · DJ set</span><button class="zclose" id="djClose" type="button">Fermer</button></div>
   <h2 class="djt">Les filles aux <em>platines</em></h2>
@@ -1130,7 +1193,7 @@ board.addEventListener("click",e=>{const i=e.target.closest(".inside"); if(!i)re
 
 // Boules qui s'ouvrent en grand quand on les dévoile
 // Photos des invités : affichées à côté de leur prénom (fichiers face-<prénom>.jpg)
-const PHOTOS={arthur:"face-arthur.jpg",charlotte:"face-charlotte.jpg",guigui:"face-guigui.jpg",elodie:"face-elodie.jpg",diane:"face-diane.jpg",pauline:"face-pauline.jpg"};
+const PHOTOS={arthur:"face-arthur.jpg",charlotte:"face-charlotte.jpg",guigui:"face-guigui.jpg",elodie:"face-elodie.jpg",diane:"face-diane.jpg",pauline:"face-pauline.jpg",valentin:"face-valentin.jpg",sylvain:"face-sylvain.jpg"};
 const keyOf=n=>n.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
 function face(n,cls){const src=PHOTOS[keyOf(n)];if(!src)return null;const im=document.createElement("img");im.src=src;im.alt="";im.className="face"+(cls?" "+cls:"");im.onerror=()=>im.remove();return im;}
 function personEl(n,cls){const sp=document.createElement("span");sp.className="person";const f=face(n,cls);if(f)sp.appendChild(f);const t=document.createElement("span");t.textContent=n;sp.appendChild(t);return sp;}
@@ -1161,7 +1224,7 @@ const BIG = {
   17:{ emoji:"🥂", title:"Tu es prêt ?", text:"Pourquoi ne pas prendre un petit blanc… histoire d'attendre les derniers 😉" },
   15:{ emoji:"🥐", title:"Bonjour tout le monde !", text:"Rien de mieux que des viennoiseries et un bon café pour commencer la journée !" },
   9:{ emoji:"📸", title:"C'est l'heure de la photo !", text:"On immortalise le week-end : tous devant le sapin avec son plus beau sourire !" },
-  10:{ emoji:"🎁", title:"Il est minuit !", text:"C'est l'heure d'ouvrir les cadeaux !!" }
+  10:{ gifts:true, emoji:"🎁", title:"Il est minuit !", text:"C'est l'heure d'ouvrir les cadeaux !!" }
 };
 // Lien du sondage (Microsoft Forms, Google Forms…) : le QR code est fabriqué à partir de ce lien
 // ====== RÉGLAGES DU VOTE ======
@@ -1183,6 +1246,7 @@ function openZoom(n){
   if(b.trophy){ openTR(); return; }
   if(b.final){ openFIN(); return; }
   if(b.dj){ openDJ(); return; }
+  if(b.gifts){ openGJ(); return; }
   if(b.jd){ openJD(b.jd===true?"jd":b.jd); return; }
   zball.className="zball "+([...cell.classList].find(c=>c.startsWith("c-"))||"c-gold");
   zT.textContent=b.title; zP.textContent=b.text; zVoteShow(!!b.vote);
@@ -2104,7 +2168,7 @@ eReveal.addEventListener("click",()=>{drumCtxGet();reveal();});
 eReplay.addEventListener("click",()=>{drumCtxGet();reveal();});
 eEdit.addEventListener("click",()=>{eTimers.forEach(clearTimeout);eTimers=[];stage("entry");});
 zoom.addEventListener("click",e=>{if(e.target===zoom) closeZoom();});
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){ if(!dj.hidden) closeDJ(); else if(!fin.hidden) closeFIN(); else if(!tr.hidden) closeTR(); else if(!sd.hidden) closeSD(); else if(!bt.hidden) closeBT(); else if(!jd.hidden) closeJD(); else if(!fight.hidden) closeFight(); else if(!elec.hidden) closeElec(); else closeZoom(); }});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){ if(!gjEl.hidden) closeGJ(); else if(!dj.hidden) closeDJ(); else if(!fin.hidden) closeFIN(); else if(!tr.hidden) closeTR(); else if(!sd.hidden) closeSD(); else if(!bt.hidden) closeBT(); else if(!jd.hidden) closeJD(); else if(!fight.hidden) closeFight(); else if(!elec.hidden) closeElec(); else closeZoom(); }});
 
 function tick(){
   const now=Date.now();
@@ -2359,6 +2423,93 @@ document.getElementById("resetBtn").addEventListener("click",function ask(){
   });
   document.addEventListener("fullscreenchange",upd); document.addEventListener("webkitfullscreenchange",upd);
 })();
+
+/* ===== Jeu des cadeaux (boule 10) ===== */
+const GJ_CARDS=[
+ "Tout le monde décale son cadeau vers la droite",
+ "Donne ton cadeau à la personne qui a le plus beau sourire",
+ "Échange ton cadeau avec celui qui a le moins de cheveux",
+ "Échange ton cadeau avec le plus jeune",
+ "Les hommes échangent leur cadeau entre eux",
+ "Les femmes échangent leur cadeau entre elles",
+ "Échange ton cadeau avec le garçon le plus relou",
+ "Échange ton cadeau avec la fille la plus relou",
+ "Échange ton cadeau avec la personne qui porte le plus de rouge",
+ "Échange ton cadeau avec la personne qui porte le déguisement ou les vêtements les plus moches",
+ "Tout le monde échange son cadeau avec la personne en face",
+ "Échange ton cadeau avec celui qui est le moins bien emballé",
+ "Échange ton cadeau avec la personne qui a le plus gros ventre",
+ "Échange ton cadeau avec le plus barbu",
+ "Échange ton cadeau avec le ou la plus vieux ou vieille",
+ "Déballe ton cadeau : s'il te convient, garde-le, sinon tu peux l'échanger",
+ "Récupère le plus gros des cadeaux",
+ "Tout le monde décale son cadeau vers la gauche",
+ "Échange ton cadeau avec la personne arrivée en dernier ce week-end",
+ "Échange ton cadeau avec la personne qui a le plus de cheveux blancs",
+ "Prends le cadeau de ton choix",
+ "Échange ton cadeau avec la personne qui a le plus picolé à l'apéro",
+ "Les personnes qui ont des lunettes échangent leurs cadeaux",
+ "Échange ton cadeau avec la personne qui a les plus grands pieds",
+ "Échange ton cadeau avec la personne qui a le plus mal chanté au karaoké"
+];
+const gjEl=document.getElementById("gj"), gjOrderEl=document.getElementById("gjOrder"), gjTurnEl=document.getElementById("gjTurn"),
+  gjCardEl=document.getElementById("gjCard"), gjNumEl=document.getElementById("gjNum"), gjTextEl=document.getElementById("gjText"),
+  gjGoEl=document.getElementById("gjGo"), gjLeftEl=document.getElementById("gjLeft"), gjFinEl=document.getElementById("gjFin"),
+  gjSubEl=document.getElementById("gjSub"), gjEndEl=document.getElementById("gjEnd"), gjRestartEl=document.getElementById("gjRestart");
+const gjShuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const gjFresh=()=>({order:[],turn:0,deck:gjShuffle(GJ_CARDS.map((_,i)=>i)),pos:0,shown:false,done:false});
+let gj=gjFresh(), gjBusy=false;
+try{const o=JSON.parse(store.get("avent30-gifts")||"null"); if(o&&Array.isArray(o.deck)&&o.deck.length===GJ_CARDS.length) gj=o;}catch(e){}
+const gjSave=()=>store.set("avent30-gifts",JSON.stringify(gj));
+const GJ_PEOPLE=[...TEAMS.flatMap(t=>t[1]),"Valentin","Sylvain"];
+if(gj.order.length&&gj.order.length!==GJ_PEOPLE.length){gj=gjFresh();}
+function gjFace(n){const f=face(n); if(f) return f; const d=document.createElement("span"); d.className="face gjini"; d.textContent=n[0]; return d;}
+function gjTurnShow(name,lead){ gjTurnEl.innerHTML=""; gjTurnEl.appendChild(gjFace(name));
+  const t=document.createElement("span"); t.innerHTML=(lead||"À toi, ")+"<em></em> !"; t.querySelector("em").textContent=name; gjTurnEl.appendChild(t); }
+function gjRender(){
+  const started=gj.order.length>0;
+  gjFinEl.hidden=!gj.done; gjCardEl.hidden=gj.done; gjTurnEl.hidden=gj.done||!started; gjSubEl.hidden=started;
+  gjOrderEl.innerHTML="";
+  gj.order.forEach((n,i)=>{const d=document.createElement("span");d.className="gjp"+(i===gj.turn&&!gj.done?" now":"");d.appendChild(gjFace(n));
+    const t=document.createElement("span");t.textContent=n;d.appendChild(t);gjOrderEl.appendChild(d);});
+  if(started&&!gj.done) gjTurnShow(gj.order[gj.turn]);
+  gjCardEl.classList.toggle("flip",gj.shown);
+  if(gj.shown){ gjNumEl.textContent="Carte "+(gj.pos+1)+" / "+gj.deck.length; gjTextEl.textContent=GJ_CARDS[gj.deck[gj.pos]]; }
+  gjGoEl.hidden=gj.done;
+  gjGoEl.textContent=!started?"Qui commence ?":gj.shown?(gj.pos+1>=gj.deck.length?"Fin du jeu":"Au suivant ➜"):"Tirer une carte";
+  const left=gj.deck.length-gj.pos-(gj.shown?1:0);
+  gjLeftEl.textContent=started&&!gj.done?left+" carte"+(left>1?"s":"")+" restante"+(left>1?"s":""):"";
+  gjEndEl.hidden=!started||gj.done; gjRestartEl.hidden=!started;
+}
+function gjPickOrder(){
+  if(gjBusy) return; gjBusy=true; gjGoEl.disabled=true; drumRoll(1.8);
+  gjTurnEl.hidden=false; gjSubEl.hidden=true;
+  const final=gjShuffle(GJ_PEOPLE); let k=0;
+  const iv=setInterval(()=>{ gjTurnShow(GJ_PEOPLE[k++%GJ_PEOPLE.length],"C'est… "); gjTurnEl.classList.remove("spin"); void gjTurnEl.offsetWidth; gjTurnEl.classList.add("spin"); },110);
+  setTimeout(()=>{ clearInterval(iv); drumCrash(); gj.order=final; gj.turn=0; gjSave(); gjBusy=false; gjGoEl.disabled=false; gjRender();
+    gjTurnShow(final[0],"On commence par "); },1800);
+}
+function gjDraw(){
+  if(gjBusy) return; gjBusy=true; gjGoEl.disabled=true;
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  drumRoll(reduce?.3:1); if(!reduce){ gjCardEl.classList.remove("shake"); void gjCardEl.offsetWidth; gjCardEl.classList.add("shake"); }
+  setTimeout(()=>{ gjCardEl.classList.remove("shake"); fBell(1); gj.shown=true; gjSave(); gjBusy=false; gjGoEl.disabled=false; gjRender(); }, reduce?300:1000);
+}
+function gjNext(){
+  if(gj.pos+1>=gj.deck.length){ gjFinish(); return; }
+  gj.shown=false; gjCardEl.classList.remove("flip"); gjBusy=true; gjGoEl.disabled=true;
+  setTimeout(()=>{ gj.pos++; gj.turn=(gj.turn+1)%gj.order.length; gjSave(); gjBusy=false; gjGoEl.disabled=false; gjRender(); },450);
+}
+function gjFinish(){ gj.done=true; gj.shown=false; gjSave(); gjRender(); fBell(3); }
+gjGoEl.addEventListener("click",()=>{ drumCtxGet(); if(!gj.order.length) gjPickOrder(); else if(gj.shown) gjNext(); else gjDraw(); });
+gjCardEl.addEventListener("click",()=>{ if(gj.order.length&&!gj.done&&!gjBusy) gjGoEl.click(); });
+gjEndEl.addEventListener("click",()=>{ if(gjEndEl.dataset.sure){ delete gjEndEl.dataset.sure; gjEndEl.textContent="Terminer le jeu"; gjFinish(); }
+  else{ gjEndEl.dataset.sure="1"; gjEndEl.textContent="Sûr ? Clique encore"; setTimeout(()=>{delete gjEndEl.dataset.sure; gjEndEl.textContent="Terminer le jeu";},3000);} });
+gjRestartEl.addEventListener("click",()=>{ if(gjRestartEl.dataset.sure){ delete gjRestartEl.dataset.sure; gjRestartEl.textContent="Recommencer"; gj=gjFresh(); gjSave(); gjCardEl.classList.remove("flip"); gjRender(); }
+  else{ gjRestartEl.dataset.sure="1"; gjRestartEl.textContent="Sûr ? Clique encore"; setTimeout(()=>{delete gjRestartEl.dataset.sure; gjRestartEl.textContent="Recommencer";},3000);} });
+function openGJ(){ gjEl.hidden=false; gjEl.scrollTop=0; gjRender(); }
+function closeGJ(){ gjEl.hidden=true; }
+document.getElementById("gjClose").addEventListener("click",closeGJ);
 </script>
 </body>
 </html>
