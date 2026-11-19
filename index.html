@@ -145,7 +145,22 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
 :fullscreen footer{display:none}
 :fullscreen .music{opacity:.25;transition:opacity .3s}
 :fullscreen .music:hover,:fullscreen .music:focus-visible,:fullscreen .music.ringing{opacity:1}
-:fullscreen .wrap{padding-top:10px}
+:fullscreen .wrap{padding-top:0}
+.bgtitle{display:none}
+:fullscreen header{position:fixed;left:max(2vw,16px);bottom:max(3vh,16px);z-index:5;align-items:flex-start}
+:fullscreen header .hero{display:none}
+:fullscreen .bgtitle{display:block;position:fixed;inset:0;z-index:0;pointer-events:none}
+:fullscreen .wrap>.garland,:fullscreen header h1{display:none}
+.bgtitle .garland{position:absolute;top:0;left:0;right:0;margin:0}
+.bgj,.bgi{position:absolute;left:0;right:0;display:flex;justify-content:space-between;line-height:1}
+.bgj .l,.bgi .l{width:calc(50% - var(--gap));text-align:right}
+.bgj .r,.bgi .r{width:calc(50% - var(--gap));text-align:left}
+.bgj{--gap:max(9vw,13vh);top:7vh;font-family:"Great Vibes",var(--f-display),cursive;font-size:min(17vh,11vw);line-height:1.1}
+.bgj span{background:linear-gradient(100deg,#f7e3a1,#e0a93a 30%,#fff3c4 48%,#d49a2a 65%,#f7e3a1);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 4px 0 #0008) drop-shadow(0 0 40px #e8b54a55);padding:0 .1em}
+.bgi{--gap:max(13vw,19vh);top:calc(7vh + min(17vh,11vw) * 1.15);font-family:var(--f-punch);text-transform:uppercase;font-size:min(7vh,4.6vw);letter-spacing:.18em;color:var(--snow);text-shadow:0 0 30px #ffffff33}
+.bgi .l{padding-right:.18em}
+.bgi em{font-style:normal;color:#ff6b7f}
 .music.alarm .bell{font-size:1rem;line-height:1}
 .music.alarm.armed{background:var(--gold)}
 .music.alarm.ringing{animation:ring .25s ease-in-out 8}
@@ -1063,6 +1078,7 @@ body{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
     <div class="eact2"><button class="btn" id="eReplay" type="button">Rejouer la révélation</button><button class="btn" id="eEdit" type="button">Modifier les voix</button></div>
   </div>
 </div>
+<div class="bgtitle" aria-hidden="true"><div class="garland"></div><div class="bgj"><span class="l">Joyeux</span><span class="r">Noël</span></div><div class="bgi"><span class="l">IFEPSA</span><span class="r"><em>Vendéen</em></span></div></div>
 <div class="wrap">
   <div class="garland" aria-hidden="true"></div>
   <header>
@@ -2413,7 +2429,9 @@ document.getElementById("resetBtn").addEventListener("click",function ask(){
   if(!document.querySelector(".wrap").hidden) btn.hidden=false;
   const cur=()=>document.fullscreenElement||document.webkitFullscreenElement;
   const wrap=document.querySelector(".wrap");
-  const fit=()=>{wrap.style.zoom=""; if(!cur()) return; const h=wrap.scrollHeight+24; const z=Math.min(1,innerHeight/h); if(z<1) wrap.style.zoom=z.toFixed(3);};
+  const fit=()=>{wrap.style.zoom=""; wrap.style.marginTop=""; if(!cur()) return;
+    const top=innerHeight*.035, bot=innerHeight*.02, h=wrap.scrollHeight+12; const z=Math.min(1.8,(innerHeight-top-bot)/h);
+    wrap.style.zoom=z.toFixed(3); wrap.style.marginTop=(top/z).toFixed(0)+"px";};
   const upd=()=>{const on=!!cur(); btn.setAttribute("aria-pressed",on); lbl.textContent=on?"Quitter le plein écran":"Plein écran"; setTimeout(fit,120);};
   addEventListener("resize",()=>{if(cur()) fit();});
   btn.addEventListener("click",()=>{
