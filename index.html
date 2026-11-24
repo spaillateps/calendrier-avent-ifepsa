@@ -2287,13 +2287,13 @@ function tick(){
   for(let n=1;n<=24;n++){
     const t=unlockAt(n), d=doors[n];
     if(t<=now){avail++; d.door.classList.toggle("ready",!opened.has(n)); d.when.textContent="prête";}
-    else{d.door.classList.remove("ready"); d.when.textContent=fmtClock(t); if(next===null) next=n;}
+    else{d.door.classList.remove("ready"); d.when.textContent=testOne?fmtClock(t):""; if(next===null) next=n;}
   }
   if(next===1){cdLbl.textContent="Ouverture dans"; cd.textContent=fmtLeft(start-now);}
-  else if(next){cdLbl.textContent="Fenêtre "+next+" dans"; cd.textContent=fmtLeft(unlockAt(next)-now);}
+  else if(next){cdLbl.textContent="Prochaine surprise"; cd.textContent="Écoutez bien…";}
   else{cdLbl.textContent="Calendrier"; cd.textContent="complet";}
   cnt.textContent=opened.size+" ouverte"+(opened.size>1?"s":"")+" sur "+avail+" disponible"+(avail>1?"s":"");
-  startInfo.textContent="Vendredi 4 décembre : 19h30 à 2h00 (fenêtres 1 à 14). Samedi 5 décembre : 9h00 à 10h00 (fenêtres 15 à 17), puis 14h00 à 16h00 (fenêtres 18 à 22), et enfin 20h30 et 21h00 (fenêtres 23 et 24).";
+  startInfo.textContent=""; if(0) startInfo.textContent="Vendredi 4 décembre : 19h30 à 2h00 (fenêtres 1 à 14). Samedi 5 décembre : 9h00 à 10h00 (fenêtres 15 à 17), puis 14h00 à 16h00 (fenêtres 18 à 22), et enfin 20h30 et 21h00 (fenêtres 23 et 24).";
   if(prevAvail!==null && avail>prevAvail){
     window.ringAlarm && window.ringAlarm();
     rvObj.textContent="🎅"; rvK.textContent="Ho ho ho !"; rvT.textContent=testOne?"Essai : toutes les fenêtres peuvent s'ouvrir":"C'est l'heure d'ouvrir la fenêtre "+avail;
